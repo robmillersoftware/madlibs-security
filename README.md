@@ -16,30 +16,42 @@ You will need Node.js installed with npm on your build path
 ### Installing
 
 1) Run
+
 ---
 npm install -g gulp
 ---
+
 2) Clone this repository
+
 ---
 git clone https://github.com/robmillersoftware/template.git
 ---
+
 3) Push the master branch to your own repository
+
 ---
 git remote set-url origin <repoAddress>
 git push origin master
 ---
+
 4) (Optional) Create your own branch (i.e. develop)
+
 ---
 git checkout -b develop master
 ---
+
 5) Run
+
 ---
 npm install
 --- 
+
 6) Assuming everything went okay, you can deploy the Hello World page to your browser with
+
 ---
 gulp
 ---
+
 7) Navigate to 'localhost:3000' in your browser to see the Hello World page. Check the developer tools console to see a hello world message coming from javascript.
 
 ## How it works (feel free to delete this section once you understand how the template works)
@@ -48,6 +60,7 @@ Gulp pulls in all of its tasks from the gulp/tasks folder using the gulp/index.j
 the 'dev' task. The dev task copies all necessary files, minifies and browserifies all files under src/js, and sets up some watches. It then sets up the browser-sync server at localhost:3000.
 
 The directory structure after building is as follows:
+
 ---
 .
 |
@@ -69,6 +82,7 @@ LICENSE.md
 package.json
 README.md
 ---
+
 The dist/assets is a direct copy of src/assets. It's empty in the template project, so you won't see anything under dist. The lib directory is also a copy. The js directory contains all of the javascript under src/js concatenated to a single file and uglified. dist/js/maps contains the sourcemaps for the original JS files to aid in debugging.
 
 ## Built With
