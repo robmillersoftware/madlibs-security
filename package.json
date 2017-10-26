@@ -1,19 +1,19 @@
 {
-  "name": "template",
+  "name": "madlibs-security",
   "version": "0.0.0",
-  "description": "Fork this to make an awesome project",
+  "description": "This project is a prototype for new authentication options through PNC Bank",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robmillersoftware/template.git"
+    "url": "git+https://github.com/robmillersoftware/madlibs-security.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Rob Miller",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/robmillersoftware/template/issues"
+    "url": "https://github.com/robmillersoftware/madlibs-security/issues"
   },
-  "homepage": "https://github.com/robmillersoftware/template#readme",
+  "homepage": "https://github.com/robmillersoftware/madlibs-security#readme",
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "babelify": "^7.3.0",
