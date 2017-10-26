@@ -14,7 +14,6 @@ const config      = require('../config');
  */
 gulp.task('buildApp', () => {
     return browserify(config.browserifyApp)
-        .require('delaunator')
         .transform('babelify', config.babelify)
         .bundle()
         .pipe(source('index.js'))

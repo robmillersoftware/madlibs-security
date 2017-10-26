@@ -1,6 +1,5 @@
 /**
- * Gulp build file. Aggregates tasks and configurations found in gulp/tasks folder
- * Any logic that would be added here likely should be added there instead.
+ * The gulp build is broken out into distinct task files. This command executes index.js inside of the gulp
+ * directory which runs require on every task file
  */
-const requireDir = require('require-dir');
-requireDir('./gulp/tasks', {recurse: true});
+require('./gulp');

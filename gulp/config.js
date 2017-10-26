@@ -25,7 +25,7 @@ module.exports = {
         debug: true
     },
     babelify: {
-        presets: ["es2015"],
+        presets: ['env'],
         sourceMaps: true 
     }
 };

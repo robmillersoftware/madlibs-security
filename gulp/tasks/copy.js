@@ -12,7 +12,6 @@ gulp.task('copyHtml', () => {
 
 gulp.task('copyAssets', () => {
     copyUtil.copy('./src/assets/images/*', './dist/assets/images');
-    copyUtil.copy('./src/assets/kenney/**/*', './dist/assets/kenney');
 });
 
 gulp.task('copyLib', () => {
