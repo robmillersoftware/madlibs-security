@@ -7,15 +7,15 @@ const gulp     = require('gulp');
  * logic needs to be performed on a file type
  */
 gulp.task('copyHtml', () => {
-    copyUtil.copy('./src/**/*.html', './dist');
+    copyUtil.copy(config.ui.dir + '/**/*.html', config.dist.dir);
 });
 
 gulp.task('copyAssets', () => {
-    copyUtil.copy('./src/assets/images/*', './dist/assets/images');
+    copyUtil.copy(config.ui.images + '/*', config.dist.images);
 });
 
 gulp.task('copyLib', () => {
-    copyUtil.copy('./src/lib/*', './dist/lib');
+    copyUtil.copy(config.lib + '/*', config.dist.lib);
 });
 
 gulp.task('copy', ['copyHtml', 'copyAssets', 'copyLib'], () => {
