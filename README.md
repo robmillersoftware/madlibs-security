@@ -2,27 +2,28 @@
 
 This is the team MadLibs project for the 2017 PNC CyberFest. 
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-You will need Node.js installed with npm on your build path
+* Node.js
+* Mongo DB
 
 ### Installing
+
 1) Clone this repository `git clone https://github.com/robmillersoftware/madlibs-security.git`
 2) Run `npm install`
-3) Assuming everything went okay, you can deploy to the browser with `gulp`
-4) Navigate to `localhost:3000` to see the UI
+3) Assuming everything went okay, you can deploy the server with `npm start`
+4) Navigate to `localhost:5000` to see the UI
+
+The start command will also launch a custom watch script that will execute the appropiate npm script whenever a file in
+the src directory is modified, added, or removed. Additionally, nodemon is used to run the server script so whenever any
+files change the server will restart.
 
 ## Built With
 
-* [Gulp](https://gulpjs.com/)- build and workflow
 * [Babel](https://babeljs.io/)- es6 to es5 compiler
-* [Browserify](http://browserify.org/)- Use Node.js syntax in browser and bundle all source files to single .js file
-* [UglifyJS](https://github.com/mishoo/UglifyJS)- minify code
-* [Vinyl](https://github.com/gulpjs/vinyl)- provides metadata for file handling
+* [MongoDB](https://mongodb.github.io/node-mongodb-native/)- NoSQL database
+* [SuperScript](https://github.com/superscriptjs/superscript)- A chatbot framework for Node.js
+* [Synaptic](http://caza.la/synaptic/#/)- Neural network library
 
 ## License
 
