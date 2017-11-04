@@ -2,21 +2,13 @@
   "name": "madlibs-security",
   "version": "0.0.0",
   "description": "This project is a prototype for new authentication options through PNC Bank",
-  "main": "index.js",
   "scripts": {
-    "env": "env",
-    "clean": "rm -rf dist && mkdir dist",
-    "parse": "parse -f -p src/chat -o dist/data.json",
-    "build:js": "babel -d ./dist ./src -s",
-    "build:css": "cd src; cp -f --parents pages/**/*.css ../dist",
-    "build:ejs": "cd src; cp -f --parents pages/**/*.ejs ../dist",
-    "build:ss": "npm run parse",
-    "build:assets": "cd src; cp -rf --parents assets/* ../dist",
-    "copy": "npm run build:css && npm run build:ejs && npm run build:assets",
-    "build": "npm run clean && npm run parse && npm run copy && npm run build:js",
-    "watch": "node bin/watch.js",
-    "prestart": "npm run build",
-    "start": "parallelshell 'nodemon --watch dist dist/server.js' 'npm run watch'"
+    "clean": "node build/clean.js",
+    "parse": "node build/parse.js",
+    "watch": "node build/watch.js",
+    "build": "node build/build.js",
+    "prestart": "npm run clean -s && npm run -s build -- -ss -js -ejs -css -assets",
+    "start": "parallelshell 'nodemon -q --watch dist dist/server.js' 'npm run watch'"
   },
   "repository": {
     "type": "git",
@@ -31,22 +23,18 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "browserify": "^14.4.0",
-    "del": "^3.0.0",
     "nodemon": "^1.12.1",
     "parallelshell": "^3.0.2"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "browserify-middleware": "^8.0.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-ws": "^3.0.0",
     "mongodb": "^2.2.33",
     "node-watch": "^0.5.5",
     "superscript": "^1.1.4",
-    "synaptic": "^1.1.4",
-    "ws": "^3.2.0"
+    "synaptic": "^1.1.4"
   },
   "babel": {
     "presets": [

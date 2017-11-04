@@ -52,6 +52,7 @@ const options = {
     clean: true,
   },
   mongoURI: mongoURI,
+  pluginsPath: __dirname + '/plugins',
   importFile: __dirname + '/data.json',
 };
 
