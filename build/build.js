@@ -5,6 +5,11 @@ let commandsToRun = [];
 
 console.log('-Running builds');
 
+const displayUsage = () => {
+    console.log('Usage: node build.js -js|-ejs|-css|-ss|-assets');
+    process.exit();
+}
+
 args.forEach(arg => {
     if (!validCommands.includes(arg)) {
         displayUsage();
