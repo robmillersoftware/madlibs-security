@@ -42,7 +42,7 @@ const runCss = () => {
 
 const runSs = () => {
     console.log('--Compiling bot scripts and copying plugins');
-    exec(`npm run parse -s; cd ${process.env.PWD}/src; cp -rf plugins ../dist`, (err, stdout, stderr) => {
+    exec(`npm run parse -s; cd ${process.env.PWD}/src; cp -rf plugins ../dist; cp -rf chat/tag/*.txt ../node_modules/bot-lang/data/tag; cp -rf chat/tag/tag.js ../node_modules/bot-lang/lib/tag.js`, (err, stdout, stderr) => {
         if (err) throw err;
     });
 }

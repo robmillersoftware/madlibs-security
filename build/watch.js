@@ -8,11 +8,11 @@ spawn = require('child_process').spawn;
 
 watch('src', { recursive: true }, (e, file) => {
     // Use the extension of the file as the npm script name
-    const script = 'build:' + file.split('.').pop();
+    const script = file.split('.').pop();
 
-    if (['build:js', 'build:css', 'build:ejs'].includes(script)) {
+    if (['js', 'css', 'ejs', 'ss'].includes(script)) {
         // Spawn the process
-        const p = spawn('npm', ['run', script], {
+        const p = spawn('npm', ['run', 'build', '--', '-' + script], {
             stdio: 'inherit' // pipe output to the console
         });
         // Print something when the process completes

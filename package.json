@@ -8,7 +8,7 @@
     "watch": "node build/watch.js",
     "build": "node build/build.js",
     "prestart": "npm run clean -s && npm run -s build -- -ss -js -ejs -css -assets",
-    "start": "parallelshell 'nodemon -q --watch dist dist/server.js' 'npm run watch'"
+    "start": "parallelshell 'nodemon -q --watch dist dist/server.js -local' 'npm run watch'"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/robmillersoftware/madlibs-security#readme",
   "devDependencies": {
+    "babel-plugin-globals": "^3.0.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "nodemon": "^1.12.1",
@@ -31,10 +32,12 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-ws": "^3.0.0",
+    "json-stringify-safe": "^5.0.1",
     "mongodb": "^2.2.33",
     "node-watch": "^0.5.5",
     "superscript": "^1.1.4",
-    "synaptic": "^1.1.4"
+    "synaptic": "^1.1.4",
+    "uuid": "^3.1.0"
   },
   "babel": {
     "presets": [
