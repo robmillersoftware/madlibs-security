@@ -9,7 +9,7 @@ This project is the prototype for an AI-driven authentication scheme for online 
 ### Prerequisites
 
 * Node.js
-* Mongo DB
+* Mongo DB (if you want to run locally)
 
 ### Installing
 
