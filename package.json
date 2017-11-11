@@ -2,6 +2,7 @@
   "name": "madlibs-security",
   "version": "0.0.0",
   "description": "This project is a prototype for new authentication options through PNC Bank",
+  "main": "dist/server.js",
   "scripts": {
     "clean": "node build/clean.js",
     "parse": "node build/parse.js",
