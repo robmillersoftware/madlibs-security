@@ -9,7 +9,7 @@ import MongoConnect   from './db/mongo-connect';  //Wrapper for the connection t
 //Set up express
 const app = express();
 const ws = expressWs(app);
-const IP =  process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+const HOST =  process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 const PORT = process.env.OPENSHIFT_NODEJS_PORT || 5000;
 
 //Mongo connection defaults to mlab. If -local is specified instead, then connect to the local mongo daemon
@@ -99,7 +99,7 @@ superscript.setup(options, (err, botInstance) => {
   bot = botInstance;
 
   //Start express server after mongo and superscript are up and running
-  app.listen(PORT, () => {
+  app.listen(PORT, HOST, () => {
     console.log(`===> 🚀  Server is now running on port ${PORT}`);
   });
 });
