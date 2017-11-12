@@ -14,7 +14,7 @@ exec('cd src; parse -f --mongoURI "' + mongoURI + '" -p chat -o ../dist/data.jso
     if (err) throw err;
 });
 
-exec('cd src; cleanup --mongoURI "' + mongoURI + '"', (err, stdout, stderr) => {
+exec('cd src; cleanup --mongoURI "' + mongoURI + '" --importFile ../dist/data.json', (err, stdout, stderr) => {
     if (err) throw err;
 });
 
