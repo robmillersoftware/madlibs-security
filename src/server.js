@@ -38,7 +38,7 @@ app.post('/google', (req, res) => {
   let response = {
     speech: 'blah blah blah',
     displayText: 'hey hey hey',
-    data: {},
+    data: {"request": JSON.stringify(req.body)},
     contextOut: [],
     source: '',
     followupEvent: {}
