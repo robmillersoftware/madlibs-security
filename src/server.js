@@ -34,11 +34,29 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
+app.post('/google', (req, res) => {
+  let response = {
+    speech: '',
+    displayText: '',
+    data: {},
+    contextOut: [],
+    source: '',
+    followupEvent: {}
+  };
+
+  console.log(JSON.stringify(req.body));
+  res.send(JSON.stringify(response));
+});
+
 //R- read operations
 app.get('/', (req, res) => { 
   res.render('index/index.ejs', {
     serverUrl: serverUrl
   }); 
+});
+
+app.get('/privacy', (req, res) => {
+  res.render('privacy/privacy.ejs');
 });
 
 //U- update operations
