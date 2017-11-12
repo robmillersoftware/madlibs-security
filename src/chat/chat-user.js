@@ -92,7 +92,6 @@ export default class UserConnection {
         let profile = this.db.read('users', {id: id});
         if (profile) {
             this.uuid = id;
-            this.history = profile.history;
         }
     }
 
