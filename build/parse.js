@@ -6,7 +6,7 @@ let mongoURI = null;
 if (args.length > 0 && args[0] === '-local') {
     mongoURI = 'mongodb://localhost:27017';
 } else {
-    mongoURI = 'mongodb://pnc-madlibs:cfo12345@ds042607.mlab.com:42607/pnc-madlibs';
+    mongoURI = 'mongodb://pnc-madlibs:cfo12345@ds157475.mlab.com:57475/heroku_lf1gc35j';
 }
 
 console.log('-Parsing chatbot scripts');

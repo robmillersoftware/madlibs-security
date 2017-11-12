@@ -10,14 +10,7 @@ import MongoConnect   from './db/mongo-connect';  //Wrapper for the connection t
 const app = express();
 const ws = expressWs(app);
 const PORT = process.env.PORT || 5000;
-
-//Mongo connection defaults to mlab. If -local is specified instead, then connect to the local mongo daemon
-let mongoURI = 'mongodb://pnc-madlibs:cfo12345@ds042607.mlab.com:42607/pnc-madlibs';
- 
-let args = process.argv.slice(2);
-if (args.length >= 1 && args[0] === '-local') {
-  mongoURI = 'mongodb://localhost';
-}
+const mongoURI = process.env.MONGODB_URI || 'mongodb://pnc-madlibs:cfo12345@ds157475.mlab.com:57475/heroku_lf1gc35j';
 
 //Array of user connections
 let users = [];
@@ -58,6 +51,7 @@ const options = {
   factSystem: {
     clean: true,
   },
+  logPath: null,
   mongoURI: mongoURI,
   pluginsPath: __dirname + '/plugins',
   importFile: __dirname + '/data.json',
