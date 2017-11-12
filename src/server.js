@@ -5,6 +5,7 @@ import path           from 'path';                //Handles filesystem paths
 import bodyParser     from 'body-parser';         //Gives access to JSON body for http requests
 import UserConnection from './chat/chat-user';    //Manages a single user's connection to the chat bot
 import MongoConnect   from './db/mongo-connect';  //Wrapper for the connection to the Mongo DB
+import WebSocket      from 'ws';
 
 //Set up express
 const app = express();
@@ -35,16 +36,28 @@ app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
 app.post('/google', (req, res) => {
-  let response = {
-    speech: 'blah blah blah',
-    displayText: 'hey hey hey',
-    data: {"request": JSON.stringify(req.body)},
-    contextOut: [],
-    source: '',
-    followupEvent: {}
-  };
+  let ws = new WebSocket(serverUrl);
 
-  res.send(JSON.stringify(response));
+  ws.on('open', () => {
+    console.log(req.body);
+    let msg = {
+      id: req.body.originalRequest.data.user.user_id,
+      string: req.body.result.source.resolvedQuery
+    }
+    ws.send(req.body);
+  });
+
+  ws.on('message', msg => {
+    let response = {
+      speech: msg.msg,
+      displayText: msg.msg,
+      data: {},
+      contextOut: [],
+      source: '',
+      followupEvent: {}
+    };
+
+    res.send(JSON.stringify(response));
 });
 
 //R- read operations
