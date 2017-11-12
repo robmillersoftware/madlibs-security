@@ -11,7 +11,7 @@ const app = express();
 const ws = expressWs(app);
 const PORT = process.env.PORT || 5000;
 const mongoURI = process.env.MONGODB_URI || 'mongodb://pnc-madlibs:cfo12345@ds157475.mlab.com:57475/heroku_lf1gc35j';
-const serverUrl = process.env.DYNO ? 'ws://young-river-54256.herokuapp.com/' : 'ws://localhost:5000';
+const serverUrl = process.env.DYNO ? 'wss://young-river-54256.herokuapp.com/' : 'ws://localhost:5000';
 //Array of user connections
 let users = [];
 
