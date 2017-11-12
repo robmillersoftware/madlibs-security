@@ -58,6 +58,7 @@ app.post('/google', (req, res) => {
     };
 
     res.send(JSON.stringify(response));
+  });
 });
 
 //R- read operations
