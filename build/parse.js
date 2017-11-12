@@ -10,11 +10,11 @@ if (args.length > 0 && args[0] === '-local') {
 }
 
 console.log('-Parsing chatbot scripts');
-exec('parse -f --mongoURI "' + mongoURI + '" -p src/chat -o dist/data.json', (err, stdout, stderr) => {
+exec('cd src; parse -f --mongoURI "' + mongoURI + '" -p chat -o ../dist/data.json', (err, stdout, stderr) => {
     if (err) throw err;
 });
 
-exec('cleanup --mongoURI "' + mongoURI + '"', (err, stdout, stderr) => {
+exec('cd src; cleanup --mongoURI "' + mongoURI + '"', (err, stdout, stderr) => {
     if (err) throw err;
 });
 
