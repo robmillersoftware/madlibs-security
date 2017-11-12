@@ -35,13 +35,14 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
-app.post('/google', (req, res) => {
+app.post('/dialogflow', (req, res) => {
+  let id = req.body.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let ws = new WebSocket(serverUrl);
 
   ws.on('open', () => {
     console.log(req.body);
     let msg = {
-      id: req.body.originalRequest.data.user.user_id,
+      id: id,
       string: req.body.result.source.resolvedQuery
     }
     ws.send(req.body);
