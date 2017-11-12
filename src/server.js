@@ -8,6 +8,7 @@ import bodyParser       from 'body-parser';         //Gives access to JSON body 
 import UserConnection   from './chat/chat-user';    //Manages a single user's connection to the chat bot
 import MongoConnect     from './db/mongo-connect';  //Wrapper for the connection to the Mongo DB
 import Client           from 'ws-promise-client';
+import wsrpc            from 'express-ws-rpc';
 
 //Set up express
 const app = express();
@@ -88,6 +89,7 @@ app.get('/privacy', (req, res) => {
 
 //Websocket connection established. Create new user connection
 app.ws('/', (socket, req) => {
+  wsrpc(socket);
   let user = new UserConnection(socket, bot, mongo);
   users.push(user);
 });
