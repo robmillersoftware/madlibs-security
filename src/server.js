@@ -1,11 +1,13 @@
-import superscript    from 'superscript';         //Bot framework, handles input and replies
-import express        from 'express';             //http server
-import expressWs      from 'express-ws';          //ws server
-import path           from 'path';                //Handles filesystem paths
-import bodyParser     from 'body-parser';         //Gives access to JSON body for http requests
-import UserConnection from './chat/chat-user';    //Manages a single user's connection to the chat bot
-import MongoConnect   from './db/mongo-connect';  //Wrapper for the connection to the Mongo DB
-import WebSocket      from 'ws';
+import 'babel-polyfill';
+
+import superscript      from 'superscript';         //Bot framework, handles input and replies
+import express          from 'express';             //http server
+import expressWs        from 'express-ws';          //ws server
+import path             from 'path';                //Handles filesystem paths
+import bodyParser       from 'body-parser';         //Gives access to JSON body for http requests
+import UserConnection   from './chat/chat-user';    //Manages a single user's connection to the chat bot
+import MongoConnect     from './db/mongo-connect';  //Wrapper for the connection to the Mongo DB
+import Client           from 'ws-promise-client';
 
 //Set up express
 const app = express();
@@ -34,32 +36,40 @@ app.use('/images', express.static(path.join(__dirname, '/assets')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/pages'));
 
-//C- create operations
-app.post('/dialogflow', (req, res) => {
+const getWsResponse = (req) => {
   let id = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
-  let ws = new WebSocket(serverUrl);
+  let ws = new Client(serverUrl);
 
-  ws.on('open', () => {
-    console.log(req.body);
+  let response = null;
+
+  (async () => {
+    await ws.open();
+
     let msg = {
       id: id,
       string: req.body.result.resolvedQuery
     }
-    ws.send(JSON.stringify(msg));
-  });
 
-  ws.on('message', msg => {
-    let response = {
-      speech: msg.msg,
-      displayText: msg.msg,
+    let result = await Client.send(msg);
+    let resObj = JSON.parse(result);
+
+    response = {
+      speech: resObj.msg,
+      displayText: resObj.msg,
       data: {},
       contextOut: [],
       source: '',
       followupEvent: {}
     };
+  })();
 
-    res.json(JSON.stringify(response));
-  });
+  return JSON.stringify(response);
+}
+
+//C- create operations
+app.post('/dialogflow', async (req, res) => {
+  let result = await getWsResponse(req);
+  res.json(result);
 });
 
 //R- read operations
