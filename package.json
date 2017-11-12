@@ -9,7 +9,7 @@
     "watch": "node build/watch.js",
     "build": "node build/build.js",
     "prestart": "npm run clean -s && npm run -s build -- -ss -js -ejs -css -assets",
-    "start": "parallelshell 'npm run watch' 'nodemon -q --watch dist dist/server.js -local'"
+    "start": "parallelshell 'npm run watch' 'nodemon -q --watch dist dist/server.js'"
   },
   "repository": {
     "type": "git",
