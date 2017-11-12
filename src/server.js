@@ -36,14 +36,14 @@ app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
 app.post('/dialogflow', (req, res) => {
-  let id = req.body.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
+  let id = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let ws = new WebSocket(serverUrl);
 
   ws.on('open', () => {
     console.log(req.body);
     let msg = {
       id: id,
-      string: req.body.result.source.resolvedQuery
+      string: req.body.result.resolvedQuery
     }
     ws.send(req.body);
   });
