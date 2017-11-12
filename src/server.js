@@ -37,7 +37,7 @@ app.set('views', path.join(__dirname, '/pages'));
 //R- read operations
 app.get('/', (req, res) => { 
   res.render('index/index.ejs', {
-    serverUrl: 
+    serverUrl: serverUrl
   }); 
 });
 
