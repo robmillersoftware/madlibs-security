@@ -85,7 +85,7 @@ $(function () {
     resetChat();
 
     //Open a new websocket to the backend
-    const ws = new WebSocket('ws://localhost:5000');
+    const ws = new WebSocket(connectionString);
     ws.onopen = event => {
         let msg = {
             string: "connected",
