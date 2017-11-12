@@ -36,15 +36,14 @@ app.set('views', path.join(__dirname, '/pages'));
 //C- create operations
 app.post('/google', (req, res) => {
   let response = {
-    speech: '',
-    displayText: '',
+    speech: 'blah blah blah',
+    displayText: 'hey hey hey',
     data: {},
     contextOut: [],
     source: '',
     followupEvent: {}
   };
 
-  console.log(JSON.stringify(req.body));
   res.send(JSON.stringify(response));
 });
 
