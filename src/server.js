@@ -45,7 +45,7 @@ app.post('/dialogflow', (req, res) => {
       id: id,
       string: req.body.result.resolvedQuery
     }
-    ws.send(req.body);
+    ws.send(JSON.stringify(msg));
   });
 
   ws.on('message', msg => {
