@@ -58,7 +58,7 @@ app.post('/dialogflow', (req, res) => {
       followupEvent: {}
     };
 
-    res.send(JSON.stringify(response));
+    res.json(JSON.stringify(response));
   });
 });
 
