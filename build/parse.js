@@ -10,7 +10,7 @@ if (args.length > 0 && args[0] === '-local') {
 }
 
 console.log('-Parsing chatbot scripts');
-exec('parse -f -p src/chat -o dist/data.json', (err, stdout, stderr) => {
+exec('parse -f --mongoURI "' + mongoURI + '" -p src/chat -o dist/data.json', (err, stdout, stderr) => {
     if (err) throw err;
 });
 
