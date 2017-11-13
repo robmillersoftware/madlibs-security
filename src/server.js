@@ -63,6 +63,7 @@ app.post('/dialogflow', (req, res) => {
   });
 
   ws.on('message', msg => {
+    console.log("responding: " + JSON.stringify(msg));
     let response = {
       speech: msg.msg,
       displayText: msg.msg,
