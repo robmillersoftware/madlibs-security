@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 import superscript      from 'superscript';         //Bot framework, handles input and replies
 import express          from 'express';             //http server
 import expressWs        from 'express-ws';          //ws server
@@ -7,7 +5,6 @@ import path             from 'path';                //Handles filesystem paths
 import bodyParser       from 'body-parser';         //Gives access to JSON body for http requests
 import UserConnection   from './chat/chat-user';    //Manages a single user's connection to the chat bot
 import MongoConnect     from './db/mongo-connect';  //Wrapper for the connection to the Mongo DB
-import WebSocket        from 'ws';
 
 const uuid = require('uuid/v4');
 
@@ -44,12 +41,19 @@ app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
 app.post('/dialogflow', (req, res) => {
-  //Create a new request ID, so the WS server knows to resolve the request later
-  let requestId = uuid();
-  requests[requestId] = res;
-
   let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
-  let ws = new WebSocket(serverUrl);
+  let user = null;
+
+  users.forEach(usr => {
+    if (usr.requestId === requestId) {
+      user = usr;
+    }
+  });
+
+  if (user === null) {
+    user = new UserConnection(socket, bot, mongo, null, req.requestId);
+    users.push(user);
+  }
 
   ws.on('open', function() {
     let msg = {
@@ -94,8 +98,6 @@ app.get('/privacy', (req, res) => {
 
 //Websocket connection established. Create new user connection
 app.ws('/', (socket, req) => {
-  console.log('Got websocket request: ' + JSON.stringify(req));
-  wsrpc(socket);
   let user = new UserConnection(socket, bot, mongo, req.requestId);
   users.push(user);
 });

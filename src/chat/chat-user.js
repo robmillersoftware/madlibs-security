@@ -8,23 +8,32 @@ var uuid = require('uuid/v4');
 
 export default class UserConnection {
     /**
-     * Builds a new user. Also pulls data from mongo if it exists
-     * @param {*} socket- a websocket connection 
+     * Builds a new user. Also pulls data from mongo if it exists. Handles either a websocket or HTTP
+     * connection
      * @param {*} bot- a superscript instance
      * @param {*} db- a reference to the mongo-connect singleton
+     * @param {*} socket- a websocket connection (Optional)
+     * @param {*} requestId- An id string referencing an HTTP request (Optional)
      */
-    constructor(socket, bot, db, requestId) {
-        this.authLevel = 0.0;   //This value represents how much this user is currently trusted 
-        this.isOpen = true;     //Denotes that the websocket connection is open
-        this.history = [];      //The history for this session
-        this.requestId = requestId;
+    constructor(bot, db, socket = null, requestId = null) {
+        this.authLevel = 0.0;       //This value represents how much this user is currently trusted 
+        this.isOpen = true;         //Denotes that the websocket connection is open
+        this.history = [];          //The history for this session
+        this.requestId = requestId; //ID for HTTP request if any
+        this.ws = socket;           //Websocket connection if any
+        this.db = db;
+        this.uuid = uuid();
+        this.bot = bot;
 
-        let id = null;
+        if (this.ws !== null) {
+            this.initializeWebSocket();
+        }
+    }
 
-        //Save a reference to this for the websocket callbacks
-        var obj = this;
+    initializeWebSocket() {
+        let obj = this;
 
-        socket.on('message', msg => {
+        obj.ws.on('message', msg => {
             console.log("we shouldn't be here");
             let message = JSON.parse(msg);
 
@@ -44,8 +53,7 @@ export default class UserConnection {
 
                     let response = {
                         msg: replyArr.shift(),
-                        uuid: id,
-                        requestId: obj.requestId
+                        uuid: id
                     }
 
                     socket.send(JSON.stringify(response));
@@ -65,15 +73,6 @@ export default class UserConnection {
             obj.update();
             obj.isOpen = false;
         });
-    
-        if (id === null) {
-            id = uuid();
-        }
-
-        this.db = db;
-        this.uuid = id;
-        this.ws = socket;
-        this.bot = bot;
 
         //The chat controller manages the state of the chatbot in regards to this user
         this.controller = new ChatController(this);
@@ -84,6 +83,41 @@ export default class UserConnection {
         };
 
         this.ws.send(JSON.stringify(resp));
+    }
+
+    handleRequest(req, res) {
+        let message = JSON.parse(req.body);
+
+        //If there is an id attached to the message from the user, then check for an existing user profile in the DB and load the data
+        if (message.id !== "undefined" && message.id !== id) {
+            id = message.id;
+            obj.buildUser(id);
+        }
+
+        //Connected is the first message sent by the user and doesn't merit a response
+        if (message.string !== 'connected') {
+          bot.reply(id, message.string, (err, reply) => {
+            if (err) console.error(err);
+            let replyArr = reply.string.split('|');
+            let sendReply = () => {
+                if (replyArr.length === 0) {
+                    res.end();
+                    return;
+                }
+
+                let response = {
+                    msg: replyArr.shift(),
+                    uuid: id
+                }
+
+                res.write(JSON.stringify(response));
+
+                setTimeout(sendReply, 500);
+            }
+
+            sendReply();
+          });
+        }
     }
 
     /**
