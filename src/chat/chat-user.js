@@ -88,15 +88,7 @@ export default class UserConnection {
     handleRequest(req, res) {
         let message = req.body;
 
-        //If there is an id attached to the message from the user, then check for an existing user profile in the DB and load the data
-        if (message.id !== "undefined" && message.id !== id) {
-            id = message.id;
-            obj.buildUser(id);
-        }
-
-        //Connected is the first message sent by the user and doesn't merit a response
-        if (message.string !== 'connected') {
-          bot.reply(id, message.string, (err, reply) => {
+        bot.reply(id, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
             let replyArr = reply.string.split('|');
             let sendReply = () => {
@@ -121,8 +113,7 @@ export default class UserConnection {
             }
 
             sendReply();
-          });
-        }
+        });
     }
 
     /**
