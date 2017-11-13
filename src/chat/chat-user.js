@@ -105,13 +105,18 @@ export default class UserConnection {
                     return;
                 }
 
+                let msg = replyArr.shift();
                 let response = {
-                    msg: replyArr.shift(),
-                    uuid: id
-                }
+                    speech: msg,
+                    displayText: msg,
+                    data: {},
+                    contextOut: [],
+                    source: '',
+                    followupEvent: {}
+                };
+  
 
                 res.write(JSON.stringify(response));
-
                 setTimeout(sendReply, 500);
             }
 

@@ -44,42 +44,22 @@ app.post('/dialogflow', (req, res) => {
   let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let user = null;
 
-  users.forEach(usr => {
-    if (usr.requestId === requestId) {
-      user = usr;
-    }
-  });
-
-  if (user === null) {
-    user = new UserConnection(socket, bot, mongo, null, req.requestId);
+  if (userId === 'undefined') {
+    user = new UserConnection(bot, mongo, null, uuid());
     users.push(user);
+  } else {
+    users.forEach(usr => {
+      if (usr.uuid === userId) {
+        user = usr;
+      }
+    });
+
+    if (user === null) {
+      throw new ReferenceError("Unable to find user with ID: " + userId);
+    }
   }
 
-  ws.on('open', function() {
-    let msg = {
-      id: userId,
-      requestId: requestId,
-      string: req.body.result.resolvedQuery
-    }
-
-    console.log('sending: ' + JSON.stringify(msg));
-    ws.send(JSON.stringify(msg));
-  });
-
-  ws.on('message', msg => {
-    console.log("responding: " + JSON.stringify(msg));
-    let response = {
-      speech: msg.msg,
-      displayText: msg.msg,
-      data: {},
-      contextOut: [],
-      source: '',
-      followupEvent: {}
-    };
-    
-    requests[msg.requestId].send(JSON.stringify(response));
-    delete requests[msg.requestId];
-  });
+  user.handleRequest(req, res);
 });
 
 //R- read operations
