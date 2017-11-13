@@ -18,9 +18,6 @@ const serverUrl = process.env.DYNO ? 'wss://young-river-54256.herokuapp.com/' : 
 //Array of user connections
 let users = [];
 
-//Queue of requests that need to be responded to by the back end
-let requests = [];
-
 //Superscript instance
 let bot;
 
@@ -44,6 +41,7 @@ app.post('/dialogflow', (req, res) => {
   let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let user = null;
 
+  console.log(userId);
   if (userId === 'undefined') {
     user = new UserConnection(bot, mongo, null, uuid());
     users.push(user);

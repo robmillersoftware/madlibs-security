@@ -13,19 +13,19 @@ export default class UserConnection {
      * @param {*} bot- a superscript instance
      * @param {*} db- a reference to the mongo-connect singleton
      * @param {*} socket- a websocket connection (Optional)
-     * @param {*} requestId- An id string referencing an HTTP request (Optional)
+     * @param {*} uuid- the ID for this user (Optional)
      */
-    constructor(bot, db, socket = null, requestId = null) {
+    constructor(bot, db, socket = null, uuid = null) {
         this.authLevel = 0.0;       //This value represents how much this user is currently trusted 
         this.isOpen = true;         //Denotes that the websocket connection is open
         this.history = [];          //The history for this session
-        this.requestId = requestId; //ID for HTTP request if any
         this.ws = socket;           //Websocket connection if any
         this.db = db;
-        this.uuid = uuid();
+        this.uuid = uuid;
         this.bot = bot;
 
         if (this.ws !== null) {
+            this.uuid = uuid();
             this.initializeWebSocket();
         }
     }
