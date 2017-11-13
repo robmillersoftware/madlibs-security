@@ -13,11 +13,12 @@ export default class UserConnection {
      * @param {*} bot- a superscript instance
      * @param {*} db- a reference to the mongo-connect singleton
      */
-    constructor(socket, bot, db) {
+    constructor(socket, bot, db, requestId) {
         this.authLevel = 0.0;   //This value represents how much this user is currently trusted 
         this.isOpen = true;     //Denotes that the websocket connection is open
         this.history = [];      //The history for this session
-        
+        this.requestId = requestId;
+
         let id = null;
 
         //Save a reference to this for the websocket callbacks
@@ -42,10 +43,10 @@ export default class UserConnection {
 
                     let response = {
                         msg: replyArr.shift(),
-                        uuid: id
+                        uuid: id,
+                        requestId: obj.requestId
                     }
 
-                    console.log(response.msg);
                     socket.send(JSON.stringify(response));
 
                     setTimeout(sendReply, 500);

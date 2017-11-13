@@ -30,7 +30,6 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-ws": "^3.0.0",
-    "express-ws-rpc": "0.0.3",
     "json-stringify-safe": "^5.0.1",
     "mongodb": "^2.2.33",
     "node-watch": "^0.5.5",
@@ -39,16 +38,12 @@
     "superscript": "^1.1.4",
     "synaptic": "^1.1.4",
     "uuid": "^3.1.0",
-    "websocket-async": "^1.3.0",
-    "ws": "^3.3.1",
-    "ws-promise-client": "^4.1.9"
+    "ws": "^3.3.1"
   },
   "babel": {
     "presets": [
       "env"
     ],
-    "plugins": [
-      "syntax-async-functions"
-    ]
+    "plugins": []
   }
 }

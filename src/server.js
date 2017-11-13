@@ -7,8 +7,9 @@ import path             from 'path';                //Handles filesystem paths
 import bodyParser       from 'body-parser';         //Gives access to JSON body for http requests
 import UserConnection   from './chat/chat-user';    //Manages a single user's connection to the chat bot
 import MongoConnect     from './db/mongo-connect';  //Wrapper for the connection to the Mongo DB
-import Client           from 'ws-promise-client';
-import wsrpc            from 'express-ws-rpc';
+import WebSocket        from 'ws';
+
+const uuid = require('uuid/v4');
 
 //Set up express
 const app = express();
@@ -16,8 +17,12 @@ const ws = expressWs(app);
 const PORT = process.env.PORT || 5000;
 const mongoURI = process.env.MONGODB_URI || 'mongodb://pnc-madlibs:cfo12345@ds157475.mlab.com:57475/heroku_lf1gc35j';
 const serverUrl = process.env.DYNO ? 'wss://young-river-54256.herokuapp.com/' : 'ws://localhost:5000';
+
 //Array of user connections
 let users = [];
+
+//Queue of requests that need to be responded to by the back end
+let requests = [];
 
 //Superscript instance
 let bot;
@@ -37,40 +42,38 @@ app.use('/images', express.static(path.join(__dirname, '/assets')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/pages'));
 
-const getWsResponse = (req) => {
-  let id = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
-  let ws = new Client(serverUrl);
+//C- create operations
+app.post('/dialogflow', (req, res) => {
+  //Create a new request ID, so the WS server knows to resolve the request later
+  let requestId = uuid();
+  requests[requestId] = res;
 
-  let response = null;
+  let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
+  let ws = new WebSocket(serverUrl);
 
-  (async () => {
-    await ws.open();
-
+  ws.on('open', () => {
     let msg = {
-      id: id,
+      id: userId,
+      requestId: requestId,
       string: req.body.result.resolvedQuery
     }
 
-    let result = await Client.send(msg);
-    let resObj = JSON.parse(result);
+    ws.send(JSON.stringify(msg));
+  });
 
-    response = {
-      speech: resObj.msg,
-      displayText: resObj.msg,
+  ws.on('message', msg => {
+    let response = {
+      speech: msg.msg,
+      displayText: msg.msg,
       data: {},
       contextOut: [],
       source: '',
       followupEvent: {}
     };
-  })();
-
-  return JSON.stringify(response);
-}
-
-//C- create operations
-app.post('/dialogflow', async (req, res) => {
-  let result = await getWsResponse(req);
-  res.json(result);
+    
+    requests[msg.requestId].send(JSON.stringify(response));
+    delete requests[msg.requestId];
+  });
 });
 
 //R- read operations
@@ -90,7 +93,7 @@ app.get('/privacy', (req, res) => {
 //Websocket connection established. Create new user connection
 app.ws('/', (socket, req) => {
   wsrpc(socket);
-  let user = new UserConnection(socket, bot, mongo);
+  let user = new UserConnection(socket, bot, mongo, req.body.requestId);
   users.push(user);
 });
 
