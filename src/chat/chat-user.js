@@ -86,7 +86,7 @@ export default class UserConnection {
     }
 
     handleRequest(req, res) {
-        let message = JSON.parse(req.body);
+        let message = req.body;
 
         //If there is an id attached to the message from the user, then check for an existing user profile in the DB and load the data
         if (message.id !== "undefined" && message.id !== id) {
