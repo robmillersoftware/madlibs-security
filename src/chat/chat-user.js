@@ -25,6 +25,7 @@ export default class UserConnection {
         var obj = this;
 
         socket.on('message', msg => {
+            console.log("we shouldn't be here");
             let message = JSON.parse(msg);
 
             //If there is an id attached to the message from the user, then check for an existing user profile in the DB and load the data
