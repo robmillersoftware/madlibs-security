@@ -88,7 +88,7 @@ export default class UserConnection {
     handleRequest(req, res) {
         let message = req.body;
 
-        bot.reply(id, message.result.resolvedQuery, (err, reply) => {
+        this.bot.reply(this.uuid, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
             let replyArr = reply.string.split('|');
             let sendReply = () => {
