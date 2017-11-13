@@ -24,6 +24,9 @@ export default class UserConnection {
         this.uuid = uuid;
         this.bot = bot;
 
+        //The chat controller manages the state of the chatbot in regards to this user
+        this.controller = new ChatController(this);
+
         if (this.ws !== null) {
             this.uuid = uuid();
             this.initializeWebSocket();
@@ -73,9 +76,6 @@ export default class UserConnection {
             obj.update();
             obj.isOpen = false;
         });
-
-        //The chat controller manages the state of the chatbot in regards to this user
-        this.controller = new ChatController(this);
 
         let resp = {
             msg: 'Welcome to PNC! How may I assist you?',
