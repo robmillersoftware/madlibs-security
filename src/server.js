@@ -94,9 +94,9 @@ app.get('/privacy', (req, res) => {
 
 //Websocket connection established. Create new user connection
 app.ws('/', (socket, req) => {
-  console.log('Got websocket request: ' + JSON.stringify(req.body));
+  console.log('Got websocket request: ' + JSON.stringify(req));
   wsrpc(socket);
-  let user = new UserConnection(socket, bot, mongo, req.body.requestId);
+  let user = new UserConnection(socket, bot, mongo, req.requestId);
   users.push(user);
 });
 
