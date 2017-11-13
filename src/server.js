@@ -51,15 +51,13 @@ app.post('/dialogflow', (req, res) => {
   let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let ws = new WebSocket(serverUrl);
 
-  ws.on('open', () => {
-    let msg = {
-      id: userId,
-      requestId: requestId,
-      string: req.body.result.resolvedQuery
-    }
+  let msg = {
+    id: userId,
+    requestId: requestId,
+    string: req.body.result.resolvedQuery
+  }
 
-    ws.send(JSON.stringify(msg));
-  });
+  ws.send(JSON.stringify(msg));
 
   ws.on('message', msg => {
     let response = {
@@ -92,6 +90,7 @@ app.get('/privacy', (req, res) => {
 
 //Websocket connection established. Create new user connection
 app.ws('/', (socket, req) => {
+  console.log('Got websocket request: ' + req.body);
   wsrpc(socket);
   let user = new UserConnection(socket, bot, mongo, req.body.requestId);
   users.push(user);
