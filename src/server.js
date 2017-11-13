@@ -51,14 +51,16 @@ app.post('/dialogflow', (req, res) => {
   let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let ws = new WebSocket(serverUrl);
 
-  let msg = {
-    id: userId,
-    requestId: requestId,
-    string: req.body.result.resolvedQuery
-  }
+  ws.on('open', function() {
+    let msg = {
+      id: userId,
+      requestId: requestId,
+      string: req.body.result.resolvedQuery
+    }
 
-  ws.send(JSON.stringify(msg));
-
+    ws.send(JSON.stringify(msg));
+  });
+  
   ws.on('message', msg => {
     let response = {
       speech: msg.msg,
