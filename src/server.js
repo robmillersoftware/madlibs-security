@@ -104,7 +104,7 @@ options.scope = {
       //If this socket is closed, then remove it from the array
       if (!sock.isOpen){
         users.splice(i, 1);
-      } else if (id === sock.uuid){;
+      } else if (id === sock.uuid){
         let res = sock.handleInput(msg);
 
         //If an array is returned from handleInput, then we need to send multiple messages
