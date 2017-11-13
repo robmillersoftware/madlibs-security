@@ -41,7 +41,6 @@ app.post('/dialogflow', (req, res) => {
   let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let user = null;
 
-  console.log(userId);
   if (userId === 'undefined') {
     user = new UserConnection(bot, mongo, null, uuid());
     users.push(user);
@@ -57,7 +56,9 @@ app.post('/dialogflow', (req, res) => {
     }
   }
 
+  console.log('handling');
   user.handleRequest(req, res);
+  console.log('done handling');
 });
 
 //R- read operations
