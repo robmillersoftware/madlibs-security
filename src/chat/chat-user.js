@@ -30,6 +30,7 @@ export default class UserConnection {
         if (this.ws !== null) {
             this.uuid = uuid();
             this.initializeWebSocket();
+            this.ws.send('Welcome to PNC! How may I help you?');
         }
     }
 
