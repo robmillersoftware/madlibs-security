@@ -19,6 +19,6 @@ export default class TransferTopic extends AbstractTopic {
             return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. "' + auth.getQuestion() + '", "context":"auth"}';
         }
 
-        return '{"message":"Echoing: "' + msg.raw + '" from TransferTopic", "context":"welcome"}';
+        return '{"message":"Which account would you like to transfer from?", "context":"welcome"}';
     }
 }

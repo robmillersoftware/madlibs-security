@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Avoid a file system hit every time we call tag.all by listing ahead of time
 // all the tag files
-const files = ['angry.txt', 'apology.txt', 'balance.txt', 'beg.txt', 'bills.txt', 'bored.txt', 'disgust.txt', 'goodbye.txt', 'happy.txt', 'hello.txt', 'help.txt', 'howisit.txt', 'ignorance.txt', 'intent_get.txt', 'intent_move.txt', 'laugh.txt', 'maybe.txt', 'misunderstand.txt', 'mutual.txt', 'no.txt', 'pain.txt', 'protest.txt', 'sad.txt', 'skeptic.txt', 'slack_emoji_nature.txt', 'slack_emoji_objects.txt', 'slack_emoji_people.txt', 'slack_emoji_places.txt', 'slack_emoji_symbols.txt', 'stop.txt', 'surprise.txt', 'thanks.txt', 'transfer.txt', 'yes.txt'];
+const files = ['account-detail.txt', 'angry.txt', 'apology.txt', 'balance.txt', 'beg.txt', 'bored.txt', 'change-address.txt', 'disgust.txt', 'goodbye.txt', 'happy.txt', 'hello.txt', 'help.txt', 'howisit.txt', 'ignorance.txt', 'intent_get.txt', 'intent_move.txt', 'laugh.txt', 'maybe.txt', 'misunderstand.txt', 'mutual.txt', 'no.txt', 'pain.txt', 'pay-bill.txt', 'pay-others.txt', 'protest.txt', 'sad.txt', 'setup-biller.txt', 'skeptic.txt', 'slack_emoji_nature.txt', 'slack_emoji_objects.txt', 'slack_emoji_people.txt', 'slack_emoji_places.txt', 'slack_emoji_symbols.txt', 'stop.txt', 'surprise.txt', 'thanks.txt', 'transfer.txt', 'yes.txt'];
 
 const testRegexpArray = msg => {
   const splitMsg = msg.toLowerCase().split(' ');

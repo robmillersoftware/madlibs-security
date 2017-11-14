@@ -30,6 +30,6 @@ export default class GreetingTopic extends AbstractTopic {
             this.user.reject();
             return '{"message":"I was unable to authenticate your account. Please contact customer support for further inquiries", "context":"rejected"}';
         }
-        return '{"message":"Echoing: ' + msg.raw + ' from GreetingTopic", "context":"welcome"}';
+        return '{"message":"Is there anything else I can help you with?", "context":"welcome"}';
     }
 }

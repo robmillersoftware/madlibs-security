@@ -1,3 +1,7 @@
-<transfer>
-<send>
-<give>
+transfer
+send
+give
+move_money
+move_funds
+transfer_money
+transfer_funds

@@ -1,19 +1,15 @@
 import AbstractTopic from './abstract-topic';
 import AuthenticationTopic from './authenticate';
 
-export default class BillsTopic extends AbstractTopic {
+export default class SetupBillerTopic extends AbstractTopic {
     constructor(container, user) {
-        super('bills', container,user);
+        super('setup-biller', container,user);
 
         this.authTarget = 1.5;
-
-        this.states.push('getPayee');
-        this.states.push('paid');
     }
 
     notify(lastTopic) {
-        this.state = 'getPayee';
-        return "Thank you for that. We're ready to pay some bills. Which bill would you like to pay?";
+        return "Thank you for that. Do something?";
     }
 
     handleInput(msg) {
@@ -21,10 +17,8 @@ export default class BillsTopic extends AbstractTopic {
             let auth = new AuthenticationTopic(this.container, this.user);
             this.container.push(auth);
             return auth.handleInput("I can definitely help you with that but before I do, I need to get to know you better.");
-        } else if (this.state === 'getPayee') {
-            //TODO: Handle making a payment
-        }
-
-        return '{"message":"Echoing: ' + msg.raw + ' from BillsTopic", "context":"welcome"}';
+        } 
+            
+        return '{"message":"Do something?", "context":"welcome"}';
     }
 }
