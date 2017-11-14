@@ -28,11 +28,11 @@ export default class UserConnection {
         this.controller = new ChatController(this);
 
         console.log(socket);
-        
+
         if (this.ws !== null) {
             this.uuid = uuid();
+            console.log(this.uuid);
             this.initializeWebSocket();
-            this.ws.send('Welcome to PNC! How may I help you?');
         }
     }
 
@@ -82,7 +82,7 @@ export default class UserConnection {
         });
 
         let resp = {
-            msg: 'Welcome to PNC! How may I assist you?',
+            msg: 'Welcome to PNC! How may I help you?',
             uuid: this.uuid
         };
 
