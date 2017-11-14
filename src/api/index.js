@@ -16,12 +16,12 @@ module.exports = {
 	customersRetail: JSON.parse(customersRetail),
 	payments: JSON.parse(payments),
 	transactions: {
-		301: JSON.parse(transactions301),
+		//301: JSON.parse(transactions301),
 		302: JSON.parse(transactions302),
 		303: JSON.parse(transactions303),
-		304: JSON.parse(transactions304),
-		305: JSON.parse(transactions305),
-		306: JSON.parse(transactions306),
-	}
+		//304: JSON.parse(transactions304),
+		//305: JSON.parse(transactions305),
+		//306: JSON.parse(transactions306)
+	},
 	virtualWallet: JSON.parse(virtualWallet)
 };
