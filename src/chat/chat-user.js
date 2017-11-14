@@ -91,15 +91,14 @@ export default class UserConnection {
     handleRequest(req, res) {
         let message = req.body;
 
-        console.log('inside handle: ' + message.result.resolvedQuery);
         this.bot.reply(this.uuid, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
             let replyArr = reply.string.split('|');
             let sendReply = () => {
-                /*if (replyArr.length === 0) {
+                if (replyArr.length === 0) {
                     res.end();
                     return;
-                }*/
+                }
 
                 let msg = replyArr.shift();
 
@@ -112,7 +111,6 @@ export default class UserConnection {
                     followupEvent: {}
                 };
   
-                console.log('replying: ' + JSON.stringify(response));
                 res.write(JSON.stringify(response));
                 setTimeout(sendReply, 500);
             }
