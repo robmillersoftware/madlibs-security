@@ -92,11 +92,13 @@ export default class UserConnection {
         this.bot.reply(this.uuid, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
 
+            let replyObj = JSON.parse(reply.string);
+
             let response = {
-                speech: reply.string,
-                displayText: reply.string,
+                speech: replyObj.message,
+                displayText: replyObj.message,
                 data: {},
-                contextOut: [],
+                contextOut: [{name: replyObj.context}],
                 source: '',
                 followupEvent: {}
             };
