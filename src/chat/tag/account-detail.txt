@@ -3,3 +3,4 @@ recent_transactions
 <what_accounts_do_I_have>
 <what_is_my_account_number>
 <what_is_my_account_address>
+account
