@@ -93,10 +93,10 @@ export default class UserConnection {
             if (err) console.error(err);
             let replyArr = reply.string.split('|');
             let sendReply = () => {
-                if (replyArr.length === 0) {
+                /*if (replyArr.length === 0) {
                     res.end();
                     return;
-                }
+                }*/
 
                 let msg = replyArr.shift();
 

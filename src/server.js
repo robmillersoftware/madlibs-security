@@ -56,9 +56,7 @@ app.post('/dialogflow', (req, res) => {
     }
   }
 
-  console.log('handling');
   user.handleRequest(req, res);
-  console.log('done handling');
 });
 
 //R- read operations
