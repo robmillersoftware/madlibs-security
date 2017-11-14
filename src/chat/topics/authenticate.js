@@ -24,6 +24,6 @@ export default class AuthenticateTopic extends AbstractTopic {
             return '{"message":"' + this.container[this.container.length - 1].notify(this) + '", "context":"welcome"}';
         }
 
-        return '{"message":"' + this.getQuestion() + '", "context": "auth"}';
+        return '{"message":"' + msg + ' ' + this.getQuestion() + '", "context": "auth"}';
     }
 }
