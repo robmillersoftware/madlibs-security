@@ -17,13 +17,13 @@ export default class AuthenticateTopic extends AbstractTopic {
     }
 
     handleInput(msg) {
-        this.adjustTrustLevel(msg);
-
         if (this.user.authLevel >= this.authTarget) {
             this.container.pop();
             return '{"message":"' + this.container[this.container.length - 1].notify(this) + '", "context":"welcome"}';
         }
 
+        this.adjustTrustLevel(msg);
+        
         return '{"message":"' + msg + ' ' + this.getQuestion() + '", "context": "auth"}';
     }
 }
