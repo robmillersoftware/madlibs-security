@@ -103,6 +103,7 @@ export default class UserConnection {
                 followupEvent: {}
             };
 
+            console.log(JSON.stringify(response));
             res.send(JSON.stringify(response));
         });
     }
