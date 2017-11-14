@@ -106,7 +106,7 @@ options.scope = {
 
         //If an array is returned from handleInput, then we need to send multiple messages
         if (Array.isArray(res)) {
-          rtn = res.join('|');
+          rtn = res.join('. ');
         } else {
           rtn = res;
         }
