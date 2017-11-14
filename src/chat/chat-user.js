@@ -27,6 +27,8 @@ export default class UserConnection {
         //The chat controller manages the state of the chatbot in regards to this user
         this.controller = new ChatController(this);
 
+        console.log(socket);
+        
         if (this.ws !== null) {
             this.uuid = uuid();
             this.initializeWebSocket();
