@@ -1,0 +1,87 @@
+{
+  "content": [
+    {
+      "budgetId": 2512,
+      "mccCode": {
+        "mccCode": 5411,
+        "editedDescription": "Grocery Stores, Supermarkets",
+        "combinedDescription": "Grocery Stores, Supermarkets",
+        "usdaDescription": "Grocery Stores",
+        "irsDescription": "Groceries",
+        "irsReportable": "No1.6041-3(c)"
+      },
+      "amount": 409,
+      "startDate": 1396296000000,
+      "endDate": 1398801600000,
+      "alterDate": 1505472578000
+    },
+    {
+      "budgetId": 2522,
+      "mccCode": {
+        "mccCode": 5651,
+        "editedDescription": "Family Clothing Stores",
+        "combinedDescription": "Family Clothing Stores",
+        "usdaDescription": "Family Clothing Stores",
+        "irsDescription": "Personal/Family",
+        "irsReportable": "No1.6041-3(c)"
+      },
+      "amount": 534,
+      "startDate": 1420052400000,
+      "endDate": 1422558000000,
+      "alterDate": 1505472578000
+    },
+    {
+      "budgetId": 2532,
+      "mccCode": {
+        "mccCode": 5814,
+        "editedDescription": "Fast Food Restaurants",
+        "combinedDescription": "Fast Food Restaurants",
+        "usdaDescription": "Fast Food Restaurants",
+        "irsDescription": "Restaurants",
+        "irsReportable": "No1.6041-3(c)"
+      },
+      "amount": 299,
+      "startDate": 1393614000000,
+      "endDate": 1396123200000,
+      "alterDate": 1505472578000
+    },
+    {
+      "budgetId": 2542,
+      "mccCode": {
+        "mccCode": 5533,
+        "editedDescription": "Automotive Parts, Accessories Stores",
+        "combinedDescription": "Automotive Parts, Accessories Stores",
+        "usdaDescription": "Automotive Parts, Accessories Stores",
+        "irsDescription": "Automotive",
+        "irsReportable": "No1.6041-3(c)"
+      },
+      "amount": 422,
+      "startDate": 1459454400000,
+      "endDate": 1461960000000,
+      "alterDate": 1505472579000
+    },
+    {
+      "budgetId": 2552,
+      "mccCode": {
+        "mccCode": 5411,
+        "editedDescription": "Grocery Stores, Supermarkets",
+        "combinedDescription": "Grocery Stores, Supermarkets",
+        "usdaDescription": "Grocery Stores",
+        "irsDescription": "Groceries",
+        "irsReportable": "No1.6041-3(c)"
+      },
+      "amount": 221,
+      "startDate": 1398888000000,
+      "endDate": 1401393600000,
+      "alterDate": 1505472579000
+    }
+  ],
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 5,
+  "sort": null,
+  "numberOfElements": 5,
+  "first": true,
+  "size": 10,
+  "number": 0
+}
