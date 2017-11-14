@@ -6,6 +6,7 @@ import AbstractTopic from './abstract-topic';
 export default class GreetingTopic extends AbstractTopic {
     constructor(container, user) {
         super('greeting', container, user);
+        this.states.push('hello');
         this.states.push('rejected');
 
         this.state = 'hello';

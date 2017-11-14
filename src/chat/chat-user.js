@@ -109,6 +109,10 @@ export default class UserConnection {
         });
     }
 
+    reject() {
+        //TODO: Turn this into a non-stub
+    }
+    
     /**
      * Fills this user's properties with data from Mongo if the user's ID is found
      * @param {*} id 
