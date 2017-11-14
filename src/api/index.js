@@ -22,6 +22,6 @@ module.exports = {
 		304: JSON.parse(transactions304),
 		305: JSON.parse(transactions305),
 		306: JSON.parse(transactions306),
-	}
+	},
 	virtualWallet: JSON.parse(virtualWallet)
 };

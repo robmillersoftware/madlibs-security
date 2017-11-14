@@ -29,9 +29,7 @@ export default class UserConnection {
 
         if (!this.uuid) {
             this.uuid = uuid();
-            console.log("literally right before");
             this.initializeWebSocket();
-            console.log("literally right after");
         }
     }
 
