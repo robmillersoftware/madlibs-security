@@ -28,9 +28,10 @@ export default class UserConnection {
         this.controller = new ChatController(this);
 
         if (!this.uuid) {
-            console.log("HELLO???????");
             this.uuid = uuid();
+            console.log("literally right before");
             this.initializeWebSocket();
+            console.log("literally right after");
         }
     }
 
