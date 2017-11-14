@@ -15,7 +15,7 @@ export default class UserConnection {
      * @param {*} socket- a websocket connection (Optional)
      * @param {*} uuid- the ID for this user (Optional)
      */
-    constructor(bot, db, socket = null, uuid = null) {
+    constructor(bot, db, socket, uuid) {
         this.authLevel = 0.0;       //This value represents how much this user is currently trusted 
         this.isOpen = true;         //Denotes that the websocket connection is open
         this.history = [];          //The history for this session
@@ -27,7 +27,8 @@ export default class UserConnection {
         //The chat controller manages the state of the chatbot in regards to this user
         this.controller = new ChatController(this);
 
-        if (uuid === null) {
+        if (!this.uuid) {
+            console.log("HELLO???????");
             this.uuid = uuid();
             this.initializeWebSocket();
         }
