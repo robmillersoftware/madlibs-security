@@ -15,26 +15,26 @@ export default class TopicController {
     }
 
     handleInput(msg) {
-        if (this.topics.length === 0) this.topics.push(new GreetingTopic(this.topics));
+        if (this.topics.length === 0) this.topics.unshift(new GreetingTopic(this.topics));
 
         if (this.topics[this.topics.length - 1].id === 'greeting') {
             if (msg.tags.includes('account-details')) {
-                this.topics.push(new AccountDetailsTopic(this.topics, this.user));
+                this.topics.unshift(new AccountDetailsTopic(this.topics, this.user));
             } else if (msg.tags.includes('balance')) {
-                this.topics.push(new BalanceTopic(this.topics, this.user));
+                this.topics.unshift(new BalanceTopic(this.topics, this.user));
             } else if (msg.tags.includes('change-address')) {
-                this.topics.push(new ChangeAddressTopic(this.topics, this.user));
+                this.topics.unshift(new ChangeAddressTopic(this.topics, this.user));
             } else if (msg.tags.includes('pay-bill')) {
-                this.topics.push(new PayBillTopic(this.topics, this.user));
+                this.topics.unshift(new PayBillTopic(this.topics, this.user));
             } else if (msg.tags.includes('pay-others')) {
-                this.topics.push(new PayOtherTopic(this.topics, this.user));
+                this.topics.unshift(new PayOtherTopic(this.topics, this.user));
             } else if (msg.tags.includes('setup-biller')) {
-                this.topics.push(new SetupBillerTopic(this.topics, this.user));
+                this.topics.unshift(new SetupBillerTopic(this.topics, this.user));
             } else if (msg.tags.includes('transfer')) {
-                this.topics.push(new TransferTopic(this.topics, this.user));
+                this.topics.unshift(new TransferTopic(this.topics, this.user));
             }
         }
         
-        return this.topics[this.topics.length - 1].handleInput(msg);
+        return this.topics[0].handleInput(msg);
     }
 }

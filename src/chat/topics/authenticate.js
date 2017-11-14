@@ -3,7 +3,7 @@ import AbstractTopic from './abstract-topic';
 export default class AuthenticateTopic extends AbstractTopic {
     constructor(container, user) {
         super('authenticate', container, user);
-        this.authTarget = container[container.length - 1].authTarget;
+        this.authTarget = container[0].authTarget;
         this.currentQuestion = '';
     }
 
@@ -18,8 +18,8 @@ export default class AuthenticateTopic extends AbstractTopic {
 
     handleInput(msg) {
         if (this.user.authLevel >= this.authTarget) {
-            this.container.pop();
-            return '{"message":"' + this.container[this.container.length - 1].notify(this) + '", "context":"welcome"}';
+            this.container.shift();
+            return '{"message":"' + this.container[0].notify(this) + '", "context":"welcome"}';
         }
 
         this.adjustTrustLevel(msg);
