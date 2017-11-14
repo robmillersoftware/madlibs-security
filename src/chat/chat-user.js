@@ -89,6 +89,7 @@ export default class UserConnection {
     handleRequest(req, res) {
         let message = req.body;
 
+        console.log(JSON.stringify(message));
         this.bot.reply(this.uuid, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
 
@@ -104,7 +105,6 @@ export default class UserConnection {
                 followupEvent: {}
             };
 
-            console.log(JSON.stringify(response));
             res.send(JSON.stringify(response));
         });
     }
