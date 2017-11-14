@@ -38,13 +38,11 @@ export default class GreetingTopic extends AbstractTopic {
                 rtn = rtn.concat(". I'm doing very well, thanks for asking! How are you?");
             }
             this.state = 'small-talk';
-            return rtn;
-        } else if (this.state === 'small-talk') {
-            return this.randomPatter();
+            return '{"message":"' + rtn + '", "context":""}';
         } else if (this.state === 'rejected') {
             this.user.reject();
-            return 'I was unable to authentiate your account. Please contact customer support for further inquiries';
+            return '{"message":"I was unable to authenticate your account. Please contact customer support for further inquiries", "context":""}';
         }
-        return "Echoing: " + msg.raw + " from GreetingTopic";
+        return '{"message":"Echoing: ' + msg.raw + ' from GreetingTopic", "context":""}';
     }
 }

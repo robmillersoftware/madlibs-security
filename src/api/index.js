@@ -13,7 +13,7 @@ const virtualWallet = require('./virtualwallet.json');
 module.exports = {
 	accounts: JSON.parse(accounts),
 	billPay: JSON.parse(billPay),
-	customersRetail: JSON.parse(customersRetail),
+	//customersRetail: JSON.parse(customersRetail),
 	payments: JSON.parse(payments),
 	transactions: {
 		//301: JSON.parse(transactions301),

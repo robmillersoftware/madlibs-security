@@ -56,9 +56,7 @@ app.post('/dialogflow', (req, res) => {
     }
   }
 
-  console.log('handling');
   user.handleRequest(req, res);
-  console.log('done handling');
 });
 
 //R- read operations
@@ -77,7 +75,7 @@ app.get('/privacy', (req, res) => {
 
 //Websocket connection established. Create new user connection
 app.ws('/', (socket, req) => {
-  let user = new UserConnection(socket, bot, mongo, req.requestId);
+  let user = new UserConnection(bot, mongo, socket, null);
   users.push(user);
 });
 
@@ -108,7 +106,7 @@ options.scope = {
 
         //If an array is returned from handleInput, then we need to send multiple messages
         if (Array.isArray(res)) {
-          rtn = res.join('|');
+          rtn = res.join('. ');
         } else {
           rtn = res;
         }

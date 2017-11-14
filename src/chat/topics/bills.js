@@ -13,18 +13,18 @@ export default class BillsTopic extends AbstractTopic {
 
     notify(lastTopic) {
         this.state = 'getPayee';
-        return ["Thank you for that. We're ready to pay some bills", "Which bill would you like to pay?"];
+        return "Thank you for that. We're ready to pay some bills. Which bill would you like to pay?";
     }
 
     handleInput(msg) {
         if (this.user.authLevel < this.authTarget) {
             let auth = new AuthenticationTopic(this.container, this.user);
             this.container.push(auth);
-            return ["I can definitely help you with that but before I do, I need to get to know you better", auth.getQuestion()];
+            return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. ' + auth.getQuestion() + '", "context":""}';
         } else if (this.state === 'getPayee') {
             //TODO: Handle making a payment
         }
 
-        return "Echoing: " + msg.raw + " from BillsTopic";
+        return '{"message":"Echoing: ' + msg.raw + ' from BillsTopic", "context":""}';
     }
 }

@@ -15,7 +15,7 @@ export default class UserConnection {
      * @param {*} socket- a websocket connection (Optional)
      * @param {*} uuid- the ID for this user (Optional)
      */
-    constructor(bot, db, socket = null, uuid = null) {
+    constructor(bot, db, socket, uuid) {
         this.authLevel = 0.0;       //This value represents how much this user is currently trusted 
         this.isOpen = true;         //Denotes that the websocket connection is open
         this.history = [];          //The history for this session
@@ -27,7 +27,7 @@ export default class UserConnection {
         //The chat controller manages the state of the chatbot in regards to this user
         this.controller = new ChatController(this);
 
-        if (this.ws !== null) {
+        if (!this.uuid) {
             this.uuid = uuid();
             this.initializeWebSocket();
         }
@@ -36,6 +36,7 @@ export default class UserConnection {
     initializeWebSocket() {
         let obj = this;
 
+        console.log('hello?wtf');
         obj.ws.on('message', msg => {
             console.log("we shouldn't be here");
             let message = JSON.parse(msg);
@@ -69,7 +70,7 @@ export default class UserConnection {
             }
         });
 
-        socket.on('close', () => {
+        obj.ws.on('close', () => {
             console.log('Connection to user: ' + obj.uuid + ' was closed');
 
             //Save this user before disconnecting
@@ -78,43 +79,32 @@ export default class UserConnection {
         });
 
         let resp = {
-            msg: 'Welcome to PNC! How may I assist you?',
+            msg: 'Welcome to PNC! How may I help you?',
             uuid: this.uuid
         };
 
-        this.ws.send(JSON.stringify(resp));
+        obj.ws.send(JSON.stringify(resp));
     }
 
     handleRequest(req, res) {
         let message = req.body;
 
-        console.log('inside handle: ' + message.result.resolvedQuery);
         this.bot.reply(this.uuid, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
-            let replyArr = reply.string.split('|');
-            let sendReply = () => {
-                if (replyArr.length === 0) {
-                    res.end();
-                    return;
-                }
 
-                let msg = replyArr.shift();
+            let replyObj = JSON.parse(reply.string);
 
-                let response = {
-                    speech: msg,
-                    displayText: msg,
-                    data: {},
-                    contextOut: [],
-                    source: '',
-                    followupEvent: {}
-                };
-  
-                console.log('replying: ' + JSON.stringify(response));
-                res.write(JSON.stringify(response));
-                setTimeout(sendReply, 500);
-            }
+            let response = {
+                speech: replyObj.message,
+                displayText: replyObj.message,
+                data: {},
+                contextOut: [{name: replyObj.context}],
+                source: '',
+                followupEvent: {}
+            };
 
-            sendReply();
+            console.log(JSON.stringify(response));
+            res.send(JSON.stringify(response));
         });
     }
 
