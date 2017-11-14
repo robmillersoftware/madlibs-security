@@ -95,8 +95,8 @@ export default class UserConnection {
             if (err) console.error(err);
 
             let response = {
-                speech: msg,
-                displayText: msg,
+                speech: reply,
+                displayText: reply,
                 data: {},
                 contextOut: [],
                 source: '',
