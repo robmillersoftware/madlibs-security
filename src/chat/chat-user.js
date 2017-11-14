@@ -93,12 +93,13 @@ export default class UserConnection {
             if (err) console.error(err);
 
             let replyObj = JSON.parse(reply.string);
+            let context = replyObj.context !== "" ? [{name:replyObj.context}] : [];
 
             let response = {
                 speech: replyObj.message,
                 displayText: replyObj.message,
                 data: {},
-                contextOut: [{name: replyObj.context}],
+                contextOut: context,
                 source: '',
                 followupEvent: {}
             };

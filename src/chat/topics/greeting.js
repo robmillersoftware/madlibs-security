@@ -10,7 +10,6 @@ export default class GreetingTopic extends AbstractTopic {
     constructor(container, user) {
         super('greeting', container, user);
         this.states.push('hello');
-        this.states.push('small-talk');
         this.states.push('rejected');
 
         this.state = 'hello';
@@ -37,12 +36,11 @@ export default class GreetingTopic extends AbstractTopic {
             if (msg.raw.match('.*how.*are.*you.*')) {
                 rtn = rtn.concat(". I'm doing very well, thanks for asking! How are you?");
             }
-            this.state = 'small-talk';
             return '{"message":"' + rtn + '", "context":""}';
         } else if (this.state === 'rejected') {
             this.user.reject();
-            return '{"message":"I was unable to authenticate your account. Please contact customer support for further inquiries", "context":""}';
+            return '{"message":"I was unable to authenticate your account. Please contact customer support for further inquiries", "context":"rejected"}';
         }
-        return '{"message":"Echoing: ' + msg.raw + ' from GreetingTopic", "context":""}';
+        return '{"message":"Echoing: ' + msg.raw + ' from GreetingTopic", "context":"welcome"}';
     }
 }

@@ -20,11 +20,11 @@ export default class BillsTopic extends AbstractTopic {
         if (this.user.authLevel < this.authTarget) {
             let auth = new AuthenticationTopic(this.container, this.user);
             this.container.push(auth);
-            return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. ' + auth.getQuestion() + '", "context":""}';
+            return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. ' + auth.getQuestion() + '", "context":"welcome"}';
         } else if (this.state === 'getPayee') {
             //TODO: Handle making a payment
         }
 
-        return '{"message":"Echoing: ' + msg.raw + ' from BillsTopic", "context":""}';
+        return '{"message":"Echoing: ' + msg.raw + ' from BillsTopic", "context":"welcome"}';
     }
 }

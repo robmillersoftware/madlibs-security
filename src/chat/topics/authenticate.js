@@ -21,9 +21,9 @@ export default class AuthenticateTopic extends AbstractTopic {
 
         if (this.user.authLevel >= this.authTarget) {
             this.container.pop();
-            return this.container[this.container.length - 1].notify(this);
+            return '{"message":"' + this.container[this.container.length - 1].notify(this) + '", "context":"welcome"}';
         }
 
-        return '{"message":"' + this.getQuestion() + '", context: "auth"}';
+        return '{"message":"' + this.getQuestion() + '", "context": "auth"}';
     }
 }

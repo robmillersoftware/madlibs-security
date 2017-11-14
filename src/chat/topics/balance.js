@@ -20,6 +20,6 @@ export default class BalanceTopic extends AbstractTopic {
             return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. "' + auth.getQuestion() + '", "context": "auth"}';
         }
 
-        return '{"message":"Echoing: "' + msg.raw + '" from BalanceTopic", "context":""}';
+        return '{"message":"Echoing: "' + msg.raw + '" from BalanceTopic", "context":"welcome"}';
     }
 }
