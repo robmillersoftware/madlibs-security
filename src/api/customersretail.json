@@ -1,0 +1,57 @@
+{
+  "partyId": 51,
+  "bank": {
+    "bankId": 1,
+    "bankName": "PNC",
+    "bankRegNumber": "10310080",
+    "country": "USA",
+    "registeredAddress": "1 PNC Plaza, 249 5th Ave, Pittsburgh, PA 15222",
+    "routingNumber": "031000053"
+  },
+  "decription": "APIFest Party",
+  "active": "Y",
+  "person": {
+    "partyId": 51,
+    "alterDate": 1207872000000,
+    "dateOfBirth": 450489600000,
+    "forename": "May",
+    "lastname": "Duncan",
+    "maritalStatus": "MARRIED",
+    "middlename": "Jayson",
+    "preferredName": "May",
+    "sex": "FEMALE",
+    "ssn": "219-09-8348",
+    "title": "MRS"
+  },
+  "organization": null,
+  "email": {
+    "partyId": 51,
+    "emailId": "may.duncan@gmail.com",
+    "active": "Y"
+  },
+  "phoneNumbers": [
+    {
+      "partyId": 51,
+      "type": "LANDLINE",
+      "phoneNumber": "518-202-0154",
+      "active": "Y"
+    },
+    {
+      "partyId": 51,
+      "type": "MOBILE",
+      "phoneNumber": "518-555-0110",
+      "active": "Y"
+    }
+  ],
+  "addresses": [
+    {
+      "partyId": 51,
+      "type": "HOME",
+      "addressLine1": "32010 Durbin Road",
+      "addressLine2": null,
+      "addressLine3": "Albany",
+      "addressLine4": "LA",
+      "zipCode": "70711"
+    }
+  ]
+}
