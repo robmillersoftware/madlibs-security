@@ -93,29 +93,17 @@ export default class UserConnection {
 
         this.bot.reply(this.uuid, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
-            let replyArr = reply.string.split('|');
-            let sendReply = () => {
-                if (replyArr.length === 0) {
-                    res.end();
-                    return;
-                }
 
-                let msg = replyArr.shift();
+            let response = {
+                speech: msg,
+                displayText: msg,
+                data: {},
+                contextOut: [],
+                source: '',
+                followupEvent: {}
+            };
 
-                let response = {
-                    speech: msg,
-                    displayText: msg,
-                    data: {},
-                    contextOut: [],
-                    source: '',
-                    followupEvent: {}
-                };
-  
-                res.write(JSON.stringify(response));
-                setTimeout(sendReply, 500);
-            }
-
-            sendReply();
+            res.send(JSON.stringify(response));
         });
     }
 
