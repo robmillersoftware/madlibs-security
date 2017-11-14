@@ -37,6 +37,7 @@ export default class UserConnection {
     initializeWebSocket() {
         let obj = this;
 
+        console.log('hello?wtf');
         obj.ws.on('message', msg => {
             console.log("we shouldn't be here");
             let message = JSON.parse(msg);
@@ -70,7 +71,7 @@ export default class UserConnection {
             }
         });
 
-        socket.on('close', () => {
+        obj.ws.on('close', () => {
             console.log('Connection to user: ' + obj.uuid + ' was closed');
 
             //Save this user before disconnecting
@@ -83,7 +84,7 @@ export default class UserConnection {
             uuid: this.uuid
         };
 
-        this.ws.send(JSON.stringify(resp));
+        obj.ws.send(JSON.stringify(resp));
     }
 
     handleRequest(req, res) {
