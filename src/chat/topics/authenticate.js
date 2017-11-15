@@ -11,8 +11,8 @@ export default class AuthenticateTopic extends AbstractTopic {
 
     getQuestion() {
         let qa = QuestionGenerator.generateQuestion();
-        this.currentQuestion = qa.question;
-        this.currentAnswer = qa.answer;
+        this.currentQuestion = JSON.stringify(qa.question);
+        this.currentAnswer = JSON.stringify(qa.answer);
     }
 
     adjustTrustLevel(message) {
@@ -29,12 +29,12 @@ export default class AuthenticateTopic extends AbstractTopic {
         if (this.currentQuestion !== '') {
             this.adjustTrustLevel(msg);     
         }
-        
+
         if (this.user.authLevel >= this.authTarget) {
             this.container.shift();
             return '{"message":"' + this.container[0].notify(this) + '", "context":"welcome"}';
         }
    
-        return '{"message":"' + msg + ' ' + this.currentQuestion + '", "context": "welcome"}';
+        return '{"message":"' + this.currentQuestion + '", "context": "welcome"}';
     }
 }

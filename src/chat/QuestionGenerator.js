@@ -7,7 +7,6 @@ export default class QuestionGenerator {
 
 	static generateQuestion() {
 		const questionNumber = QuestionGenerator.getRandomNumber(0, questions.length);
-
 		const question = questions[questionNumber];
 
 		questions.splice(questionNumber, 1);
