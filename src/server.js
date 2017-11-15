@@ -39,7 +39,7 @@ app.set('views', path.join(__dirname, '/pages'));
 //C- create operations
 app.post('/dialogflow', (req, res) => {
   console.log(req.body.originalRequest.source + ' is equal to google?');
-  console.log('if so, set id to: ' + req.body.originalRequest.data.user.user_id);
+  console.log(JSON.stringify(req.body.originalRequest));
   let userId = req.body.originalRequest.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let user = null;
 
