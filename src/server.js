@@ -103,8 +103,6 @@ options.scope = {
       if (!sock.isOpen){
         users.splice(i, 1);
       } else if (id === sock.uuid) {
-        let res = sock.handleInput(msg);
-
         if (sock.ws) {
           sock.ws.send(msg.raw);
           sock.ws.send(res);
