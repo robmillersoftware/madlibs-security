@@ -46,7 +46,9 @@ app.post('/dialogflow', (req, res) => {
     users.push(user);
   } else {
     users.forEach(usr => {
+      console.log('comparing user: ' + usr.uuid + ' with ' + userId);
       if (usr.uuid === userId) {
+        console.log('found user ' + userId);
         user = usr;
       }
     });
