@@ -32,6 +32,8 @@ export default class TopicController {
                 this.topics.unshift(new SetupBillerTopic(this.topics, this.user));
             } else if (msg.tags.includes('transfer')) {
                 this.topics.unshift(new TransferTopic(this.topics, this.user));
+            } else if (msg.tags.includes('reset')) {
+                return this.user.reset();
             }
         }
         

@@ -92,6 +92,7 @@ export default class UserConnection {
 
             let replyObj = JSON.parse(reply.string);
             let context = replyObj.context !== "" ? [{name:replyObj.context}] : [];
+            let followup = replyObj.context === "reset" ? {name:"goodbye"} : {};
 
             let response = {
                 speech: replyObj.message,
@@ -99,15 +100,20 @@ export default class UserConnection {
                 data: {},
                 contextOut: [{name: "welcome-followup"}, {name: "welcome"}],
                 source: '',
-                followupEvent: {}
+                followupEvent: followup
             };
 
             res.send(JSON.stringify(response));
         });
     }
 
-    reject() {
-        //TODO: Turn this into a non-stub
+    reset() {
+       this.authLevel = 0.0;
+       this.savingsAccountBalance = accounts.content[0].balance;
+       this.acctBalance = accounts.content[1].balance;
+       this.creditAccountBalance = accounts.content[2].balance;
+
+       return '{"message":"", "context":"reset"}';
     }
     
     /**
