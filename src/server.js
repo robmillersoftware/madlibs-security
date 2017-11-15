@@ -113,6 +113,7 @@ options.scope = {
     //The user should never see this.If they do, then they are doing something malicious or something has gone horribly wrong
     let rtn = "It appears we have nothing to talk about.....good day"
 
+    console.log('hello ' + msg.raw);
     observers.forEach((sock, i) => {
       if (sock.readyState === sock.OPEN) {
         sock.send(JSON.stringify({msg: msg.raw, uuid: null, party: 'you'}));
@@ -134,6 +135,8 @@ options.scope = {
         sock.send(JSON.stringify({msg: JSON.parse(rtn).message, uuid: null, party: 'pnc'}));
       }
     });
+
+    console.log('bye bye ' + rtn);
 
     return rtn;
   }
