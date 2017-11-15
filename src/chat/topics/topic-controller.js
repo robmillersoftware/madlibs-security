@@ -18,7 +18,7 @@ export default class TopicController {
         console.log("we have " + this.topics.length + " topics");
         if (this.topics.length === 0) this.topics.unshift(new GreetingTopic(this.topics));
 
-        if (this.topics[this.topics.length - 1].id === 'greeting') {
+        if (this.topics[0].id === 'greeting') {
             if (msg.tags.includes('account-details')) {
                 this.topics.unshift(new AccountDetailsTopic(this.topics, this.user));
             } else if (msg.tags.includes('balance')) {
