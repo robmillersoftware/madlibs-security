@@ -3,6 +3,7 @@
  */
 import ChatController from './chat-controller';
 import UserSchema from '../db/user';
+import WebSocket from 'ws';
 
 var uuidv4 = require('uuid/v4');
 

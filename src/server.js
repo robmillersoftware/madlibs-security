@@ -103,18 +103,17 @@ options.scope = {
       if (!sock.isOpen){
         users.splice(i, 1);
       } else if (id === sock.uuid) {
-        sock.ws.send(msg.raw);
         let res = sock.handleInput(msg);
-        sock.ws.send(res);
 
-        //If an array is returned from handleInput, then we need to send multiple messages
-        if (Array.isArray(res)) {
-          rtn = res.join('. ');
+        if (sock.ws) {
+          sock.ws.send(msg.raw);
+          sock.ws.send(res);
         } else {
-          rtn = res;
+          rtn = sock.handleInput(msg);
         }
       }
     });
+
     return rtn;
   }
 }
