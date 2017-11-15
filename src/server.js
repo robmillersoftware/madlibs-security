@@ -105,7 +105,10 @@ options.scope = {
     //The user should never see this.If they do, then they are doing something malicious or something has gone horribly wrong
     let rtn = "It appears we have nothing to talk about.....good day"
 
-    observers.forEach(sock => {
+    observers.forEach((sock, i) => {
+      if (sock.readyState !== sock.OPEN) {
+        observers.splice(i, 1);
+      }
       sock.send(JSON.stringify({msg: msg.raw, uuid: null}));
     });
 
