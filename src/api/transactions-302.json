@@ -78,7 +78,8 @@
         "transactionTypeId": 3,
         "accountType": "CHECK",
         "active": "Y",
-        "description": "Withdraw funds by writing a paper check. "
+        "description": "Withdraw funds by writing a paper check.",
+        "detail": "AMAZING BOOKS & RECORDS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5942,
@@ -179,14 +180,15 @@
         "transactionTypeId": 1,
         "accountType": "ATM",
         "active": "Y",
-        "description": "Deposit or withdraw funds using an ATM."
+        "description": "Deposit or withdraw funds using an ATM.",
+        "detail": "KARDS UNLIMITED PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 9999,
         "editedDescription": "Other",
         "combinedDescription": "Other",
         "usdaDescription": "Other",
-        "irsDescription": "Other",
+        "irsDescription": "Gifts",
         "irsReportable": "Other"
       },
       "comments": "ATM Credit",
@@ -280,7 +282,8 @@
         "transactionTypeId": 3,
         "accountType": "CHECK",
         "active": "Y",
-        "description": "Withdraw funds by writing a paper check. "
+        "description": "Withdraw funds by writing a paper check.",
+        "detail": "WHOLE FOODS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5411,
@@ -381,7 +384,8 @@
         "transactionTypeId": 4,
         "accountType": "DEPOSIT",
         "active": "Y",
-        "description": "Add funds to an account by any method."
+        "description": "Add funds to an account by any method.",
+        "detail": "PEP BOYS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5533,
@@ -482,7 +486,8 @@
         "transactionTypeId": 4,
         "accountType": "DEPOSIT",
         "active": "Y",
-        "description": "Add funds to an account by any method."
+        "description": "Add funds to an account by any method.",
+        "detail": "AMAZING BOOKS & RECORDS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5942,
@@ -583,7 +588,8 @@
         "transactionTypeId": 4,
         "accountType": "DEPOSIT",
         "active": "Y",
-        "description": "Add funds to an account by any method."
+        "description": "Add funds to an account by any method.",
+        "detail": "RITE AID PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5912,
@@ -684,14 +690,15 @@
         "transactionTypeId": 3,
         "accountType": "CHECK",
         "active": "Y",
-        "description": "Withdraw funds by writing a paper check. "
+        "description": "Withdraw funds by writing a paper check.",
+        "detail": "BEST BUY PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 9999,
         "editedDescription": "Other",
         "combinedDescription": "Other",
         "usdaDescription": "Other",
-        "irsDescription": "Other",
+        "irsDescription": "Electronics",
         "irsReportable": "Other"
       },
       "comments": "CHECK Credit",
@@ -785,14 +792,15 @@
         "transactionTypeId": 1,
         "accountType": "ATM",
         "active": "Y",
-        "description": "Deposit or withdraw funds using an ATM."
+        "description": "Deposit or withdraw funds using an ATM.",
+        "detail": "PORT AUTHORITY PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 9999,
         "editedDescription": "Other",
         "combinedDescription": "Other",
         "usdaDescription": "Other",
-        "irsDescription": "Other",
+        "irsDescription": "Travel",
         "irsReportable": "Other"
       },
       "comments": "ATM Credit",
@@ -886,14 +894,15 @@
         "transactionTypeId": 3,
         "accountType": "CHECK",
         "active": "Y",
-        "description": "Withdraw funds by writing a paper check. "
+        "description": "Withdraw funds by writing a paper check.",
+        "detail": "UNITED WAY PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 9999,
         "editedDescription": "Other",
         "combinedDescription": "Other",
         "usdaDescription": "Other",
-        "irsDescription": "Other",
+        "irsDescription": "Charity",
         "irsReportable": "Other"
       },
       "comments": "CHECK Credit",
@@ -987,7 +996,8 @@
         "transactionTypeId": 3,
         "accountType": "CHECK",
         "active": "Y",
-        "description": "Withdraw funds by writing a paper check. "
+        "description": "Withdraw funds by writing a paper check.",
+        "detail": "WHOLE FOODS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5411,

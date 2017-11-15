@@ -1,1 +1,60 @@
-questions
+{
+	"questions": [
+		{
+			"question": "When was the last time you withdrew cash?",
+			"answer": "Last Week"
+		},
+		{
+			"question": "How much do you usually withdraw at an ATM?",
+			"answer": "$40, $50"
+		},
+		{
+			"question": "Where did you most recently travel?",
+			"answer": "Cleveland Ohio"
+		},
+		{
+			"question": "How often did you dine out last week?",
+			"answer": "Twice"
+		},
+		{
+			"question": "Where was the last restaurant you ate at?",
+			"answer": "Wendy's"
+		},
+		{
+			"question": "Where is your go to place for grocery shopping?",
+			"answer": "Whole Foods"
+		},
+		{
+			"question": "When was the last time you went grocery shopping?",
+			"answer": "January 25"
+		},
+		{
+			"question": "Where did you get your car serviced?",
+			"answer": "Pepboys"
+		},
+		{
+			"question": "Where did you go gift shopping?",
+			"answer": "Kards Unlimited"
+		},
+		{
+			"question": "What charitable organizations have you recently donated to?",
+			"answer": "United Way"
+		},
+		{
+			"question": "What airline do you usually fly with?",
+			"answer": "I never fly"
+		},
+		{
+			"question": "Approximately how long have you been banking with PNC?",
+			"answer": "About 4 years"
+		},
+		{
+			"question": "Who was the last person you sent a Zella payment to?",
+			"answer": "Luke"
+		},
+		{
+			"question": "What are you saving up for right now?",
+			"answer": "Vacation to Costa Rica"
+		},
+	]
+}
