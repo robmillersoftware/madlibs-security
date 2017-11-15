@@ -42,23 +42,23 @@ export default class UserConnection {
 
             //Connected is the first message sent by the user and doesn't merit a response
             if (message.string !== 'connected') {
-              bot.reply(obj.uuid, message.string, (err, reply) => {
-                if (err) console.error(err);
-                let replyArr = reply.string.split('|');
-                let sendReply = () => {
-                    if (replyArr.length === 0) return;
+                obj.bot.reply(obj.uuid, message.string, (err, reply) => {
+                    if (err) console.error(err);
+                    let replyArr = reply.string.split('|');
+                    let sendReply = () => {
+                        if (replyArr.length === 0) return;
 
-                    let response = {
-                        msg: replyArr.shift(),
-                        uuid: obj.uuid
+                        let response = {
+                            msg: replyArr.shift(),
+                            uuid: obj.uuid
+                        }
+
+                        obj.ws.send(JSON.stringify(response));
+                        setTimeout(sendReply, 500);
                     }
 
-                    socket.send(JSON.stringify(response));
-                    setTimeout(sendReply, 500);
-                }
-
-                sendReply();
-              });
+                    sendReply();
+                });
             }
         });
 
@@ -72,7 +72,7 @@ export default class UserConnection {
 
         let resp = {
             msg: 'Welcome to PNC! How may I help you?',
-            uuid: this.uuid
+            uuid: obj.uuid
         };
 
         obj.ws.send(JSON.stringify(resp));
