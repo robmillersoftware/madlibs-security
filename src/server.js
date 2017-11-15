@@ -105,8 +105,9 @@ options.scope = {
     //The user should never see this.If they do, then they are doing something malicious or something has gone horribly wrong
     let rtn = "It appears we have nothing to talk about.....good day"
 
+    console.log(JSON.stringify(msg));
     observers.forEach(sock => {
-      sock.send(msg.raw);
+      sock.send(msg);
     });
 
     //Loop through the users looking for a matching ID
@@ -122,7 +123,7 @@ options.scope = {
     observers.forEach(sock => {
       sock.send(rtn);
     });
-    
+
     return rtn;
   }
 }
