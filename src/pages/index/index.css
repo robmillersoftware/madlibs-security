@@ -11,7 +11,6 @@ body{
 
 .mytext{
     border:0;
-    background:whitesmoke;
     padding: 20px;
     color: #444;
     border-top: 1px solid #999;
@@ -50,13 +49,18 @@ body{
     width: 100%;
 }
 
-.macro:not(.msj), .macro:not(.msj-rta){
+.macro:not(.msj):not(.msj-rta){
     width: 100%;
 }
 
+.img-circle{
+    filter: invert(100%);
+}
 
 .msj{
-    float:left;background:whitesmoke;
+    float:left;
+    background:#7a7a7a;
+    color: #fff;
 }
 .frame{
     overflow:hidden;
@@ -83,7 +87,7 @@ ul {
     position:relative;
     border-style: solid;
     border-width: 0 13px 13px 0;
-    border-color: transparent whitesmoke transparent transparent;            
+    border-color: transparent #7a7a7a transparent transparent;            
 }
 .msj-rta:after{
     width: 0;
