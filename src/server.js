@@ -41,15 +41,18 @@ app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
 app.post('/dialogflow', (req, res) => {
+  console.log('ello?');
   let conversationId = req.body.originalRequest.source === 'google' ? req.body.originalRequest.data.conversation.conversationId : 'undefined';
   let userId = req.body.originalRequest.source === 'google' ? req.body.originalRequest.data.user.userId : 'undefined';
   let user = null;
 
+  console.log('convo: ' + conversationId + ' user: ' + userId);
   if (conversationId !== convId) {
     users = [];
     convId = conversationId;
   }
 
+  console.log('still going');
   if (userId === 'undefined') {
     user = new UserConnection(bot, mongo, null, uuid());
     users.push(user);
