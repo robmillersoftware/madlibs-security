@@ -24,6 +24,6 @@ export default class AuthenticateTopic extends AbstractTopic {
 
         this.adjustTrustLevel(msg);
         
-        return '{"message":"' + msg + ' ' + this.getQuestion() + '", "context": "auth"}';
+        return '{"message":"' + msg + ' ' + this.getQuestion() + '", "context": "welcome"}';
     }
 }

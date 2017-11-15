@@ -36,7 +36,6 @@ export default class UserConnection {
     initializeWebSocket() {
         let obj = this;
 
-        console.log('hello?wtf');
         obj.ws.on('message', msg => {
             console.log("we shouldn't be here");
             let message = JSON.parse(msg);

@@ -17,7 +17,7 @@ export default class BalanceTopic extends AbstractTopic {
         if (this.user.authLevel < this.authTarget) {
             let auth = new AuthenticationTopic(this.container, this.user);
             this.container.unshift(auth);
-            return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. "' + auth.getQuestion() + '", "context": "auth"}';
+            return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. "' + auth.getQuestion() + '", "context": "welcome"}';
         }
 
         this.container.shift();
