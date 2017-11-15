@@ -38,7 +38,7 @@ app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
 app.post('/dialogflow', (req, res) => {
-  let userId = req.body.result.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
+  let userId = req.body.originalRequest.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
   let user = null;
 
   if (userId === 'undefined') {

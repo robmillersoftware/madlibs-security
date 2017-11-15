@@ -88,7 +88,6 @@ export default class UserConnection {
     handleRequest(req, res) {
         let message = req.body;
 
-        console.log(JSON.stringify(message));
         this.bot.reply(this.uuid, message.result.resolvedQuery, (err, reply) => {
             if (err) console.error(err);
 
