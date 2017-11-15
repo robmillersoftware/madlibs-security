@@ -11,8 +11,10 @@ export default class AuthenticateTopic extends AbstractTopic {
 
     getQuestion() {
         let qa = QuestionGenerator.generateQuestion();
-        this.currentQuestion = JSON.stringify(qa.question);
-        this.currentAnswer = JSON.stringify(qa.answer);
+        this.currentQuestion = qa.question;
+        this.currentAnswer = qa.answer;
+
+        console.log(this.currentQuestion + ' ' + this.currentAnswer);
     }
 
     adjustTrustLevel(message) {
