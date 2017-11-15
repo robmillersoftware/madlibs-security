@@ -14,12 +14,12 @@ export default class AuthenticateTopic extends AbstractTopic {
     getQuestion() {
         let qa = QuestionGenerator.generateQuestion();
         this.currentQuestion = qa.question;
-        this.currentAnswer = qa.answer;
-        FuzzySet.add(this.currentAnswer);
+        this.currentAnswer = FuzzySet([qa.answer]);
     }
 
     adjustTrustLevel(message) {
         let result = FuzzySet.get(message.raw);
+        console.log(result);
         if (result[0] > 0.5) {
             this.user.authLevel += 0.5;
         } else {
