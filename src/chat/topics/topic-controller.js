@@ -15,7 +15,6 @@ export default class TopicController {
     }
 
     handleInput(msg) {
-        console.log("we have " + this.topics.length + " topics");
         if (this.topics.length === 0) this.topics.unshift(new GreetingTopic(this.topics));
 
         if (this.topics[0].id === 'greeting') {
@@ -36,6 +35,7 @@ export default class TopicController {
             }
         }
         
+        console.log('telling ' + this.topics[0].id + ' topic to handle input');
         return this.topics[0].handleInput(msg);
     }
 }
