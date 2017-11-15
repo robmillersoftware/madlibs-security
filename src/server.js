@@ -131,7 +131,7 @@ options.scope = {
     });
 
     observers.forEach(sock => {
-      sock.send(JSON.stringify({msg: rtn, uuid: null}));
+      sock.send(JSON.stringify({msg: JSON.parse(rtn).message, uuid: null}));
     });
 
     return rtn;
