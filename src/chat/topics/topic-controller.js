@@ -15,6 +15,10 @@ export default class TopicController {
     }
 
     handleInput(msg) {
+        if (msg.tags.includes('reset')) {
+            return this.user.reset();
+        }
+        
         if (this.topics.length === 0) this.topics.unshift(new GreetingTopic(this.topics));
 
         if (this.topics[0].id === 'greeting') {
@@ -32,8 +36,6 @@ export default class TopicController {
                 this.topics.unshift(new SetupBillerTopic(this.topics, this.user));
             } else if (msg.tags.includes('transfer')) {
                 this.topics.unshift(new TransferTopic(this.topics, this.user));
-            } else if (msg.tags.includes('reset')) {
-                return this.user.reset();
             }
         }
         

@@ -25,10 +25,10 @@ export default class BalanceTopic extends AbstractTopic {
         this.currentAnswer = FuzzySet([msg.raw]);
         let creditCardResult = this.currentAnswer.get('credit card');
         let savingsAccountResult = this.currentAnswer.get('savings account');
-        if(creditCardResult && creditCardResult[0][0] > 0.5) {
+        if(creditCardResult && creditCardResult[0][0] > 0.3) {
             this.container.shift();
             return '{"message":"Your credit card balance is $' + this.user.creditAccountBalance + " " + this.container[0].notify(this) + '", "context":"welcome"}';
-        } else if (savingsAccountResult && savingsAccountResult[0][0] > 0.5) {
+        } else if (savingsAccountResult && savingsAccountResult[0][0] > 0.3) {
             this.container.shift();
             return '{"message":"Your savings account balance is $' + this.user.savingsAccountBalance + " " + this.container[0].notify(this) + '", "context":"welcome"}';
         }
