@@ -16,10 +16,10 @@ export default class AuthenticateTopic extends AbstractTopic {
     getQuestion() {
         let qa = null;
 
-        if(this.parentTopic === 'pay-bill' && QuestionGenerator.generateBillQuestion()) {
-            let qa = QuestionGenerator.generateBillQuestion();
+        if(this.parentTopic === 'pay-bill') {
+            qa = QuestionGenerator.generateBillQuestion();
         } else {
-            let qa = QuestionGenerator.generateQuestion();
+            qa = QuestionGenerator.generateQuestion();
         }
 
         this.currentQuestion = qa.question;
@@ -32,6 +32,9 @@ export default class AuthenticateTopic extends AbstractTopic {
             this.user.authLevel += 0.5;
             this.strikes = 0;
         } else {
+            if (this.parentTopic === 'pay-bill') {
+
+            }
             this.strikes += 1;
             this.user.authLevel -= 0.5;
         }
@@ -53,8 +56,14 @@ export default class AuthenticateTopic extends AbstractTopic {
         }
    
         if(this.strikes < 3 && this.user.authLevel > -1) {
-            return '{"message":"' + this.currentQuestion + '", "context": "welcome"}';
+            if (this.strikes === 1 && this.parentTopic === 'pay-bill') {
+                this.container.shift();
+                this.container.shift();
+                return '{"message": "I\'m sorry. We don\'t have that bill on file. ' + this.container[0].notify(this) + '", "context":"welcome"}';
+            }
+            return '{"message":"' + this.currentQuestion + '", "context": "welcome"}';  
         } else {
+            this.container.shift();
             return '{"message": "We cannot authenticate you at this time. We are connecting you with the PNC Care Center.", "context": "rejected"}'; 
         }
     }

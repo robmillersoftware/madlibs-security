@@ -13,7 +13,7 @@ export default class PayBillTopic extends AbstractTopic {
 
     notify(lastTopic) {
         this.state = 'getPayee';
-        return "Thank you for that. We're ready to pay some bills. Which bill would you like to pay?";
+        return "Thank you for that. How much would you like to pay to Verizon?";
     }
 
     handleInput(msg) {
@@ -23,10 +23,11 @@ export default class PayBillTopic extends AbstractTopic {
             return auth.handleInput("Let me get that set up for you.");
         } else if (this.state === 'getPayee') {
             this.container.shift();
-            return '{"message":"Trying to pay or something. ' + this.container[0].notify(this) + '", "context":"welcome"}';
+            this.user.acctBalance -= 68;
+            return '{"message":"Paid $68 to Verizon. ' + this.container[0].notify(this) + '", "context":"welcome"}';
         } else {
-            this.state = 'getPayee';
-            return '{"message":"Which bill would you like to pay?", "context":"welcome"}';
+            this.container.shift();
+            return '{"message":"' + this.container[0].notify(this) + '", "context":"welcome"}';
         }
     }
 }

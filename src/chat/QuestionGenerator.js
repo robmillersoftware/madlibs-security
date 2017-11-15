@@ -16,13 +16,10 @@ export default class QuestionGenerator {
 	}
 
 	static generateBillQuestion() {
-		const bpQuestion = bpQuestions[0] || false;
-
-		if(bpQuestions.length) {
-			bpQuestions.splice(0, 1);
+		return {
+			question: 'Who is your carrier?',
+			answer: 'Verizon'
 		}
-
-		return bpQuestion;
 	}
 
 	/*static getRandomNumber(min, max) {
