@@ -3,7 +3,7 @@ import AuthenticationTopic from './authenticate';
 
 export default class ChangeAddressTopic extends AbstractTopic {
     constructor(container, user) {
-        super('balance', container, user);
+        super('changeAddress', container, user);
         this.states.push('awaitingNew');
         this.authTarget = 5.0;
     }

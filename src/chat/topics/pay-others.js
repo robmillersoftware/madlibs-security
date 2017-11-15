@@ -44,7 +44,7 @@ export default class PayOthersTopic extends AbstractTopic {
         } else if (this.state === 'getAcct') {
             this.acct = msg.raw;
             this.state = 'confirm';
-            return '{"message":"Please confirm that you are sending $' + this.amt + ' to ' + this.payee + '?", "context":"welcome"}';
+            return '{"message":"Please confirm that you are sending ' + this.amt + ' to ' + this.payee + '?", "context":"welcome"}';
         } else if (this.state === 'confirm') {
             if (msg.raw.contains('yes')) {
                 this.container.shift();
