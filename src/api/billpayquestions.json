@@ -1,0 +1,12 @@
+{
+	"questions": [
+		{
+			"question": "What bill would you like to pay?",
+			"answer": "Verizon Wireless"
+		},
+		{
+			"question": "How much would you like pay?",
+			"answer": "$68 68 sixty-eight dollars"
+		}
+	]
+}

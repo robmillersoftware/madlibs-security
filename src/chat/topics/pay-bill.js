@@ -18,7 +18,7 @@ export default class PayBillTopic extends AbstractTopic {
 
     handleInput(msg) {
         if (this.user.authLevel < this.authTarget) {
-            let auth = new AuthenticationTopic(this.container, this.user);
+            let auth = new AuthenticationTopic(this.container, this.user, this.id);
             this.container.unshift(auth);
             return auth.handleInput("Let me get that set up for you.");
         } else if (this.state === 'getPayee') {

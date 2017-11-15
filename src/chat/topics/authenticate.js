@@ -4,16 +4,24 @@ import QuestionGenerator from '../QuestionGenerator';
 let FuzzySet = require('fuzzyset.js');
 
 export default class AuthenticateTopic extends AbstractTopic {
-    constructor(container, user) {
+    constructor(container, user, parentTopic) {
         super('authenticate', container, user);
         this.authTarget = container[0].authTarget;
         this.strikes = 0;
         this.currentQuestion = null;
         this.currentAnswer = null;
+        this.parentTopic = parentTopic;
     }
 
     getQuestion() {
-        let qa = QuestionGenerator.generateQuestion();
+        let qa = null;
+
+        if(this.parentTopic === 'pay-bill' && QuestionGenerator.generateBillQuestion()) {
+            let qa = QuestionGenerator.generateBillQuestion();
+        } else {
+            let qa = QuestionGenerator.generateQuestion();
+        }
+
         this.currentQuestion = qa.question;
         this.currentAnswer = FuzzySet([qa.answer]);
     }
