@@ -1,4 +1,4 @@
-let questions = require('../api/questions.json');
+let q = require('../api/questions.json');
 
 export default class QuestionGenerator {
 	//constructor() {
@@ -6,15 +6,15 @@ export default class QuestionGenerator {
 	//}
 
 	static generateQuestion() {
-		const questionNumber = QuestionGenerator.getRandomNumber(0, questions.length);
-		const question = questions[questionNumber];
+		const questionNumber = Math.floor(Math.random() * q.questions.length);//QuestionGenerator.getRandomNumber(0, q.questions.length);
+		const question = q.questions[questionNumber];
 
-		questions.splice(questionNumber, 1);
+		q.questions.splice(questionNumber, 1);
 
 		return question;
 	}
 
-	static getRandomNumber(min, max) {
+	/*static getRandomNumber(min, max) {
 	  return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
+	}*/
 }

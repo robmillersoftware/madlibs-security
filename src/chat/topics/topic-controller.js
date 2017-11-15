@@ -35,7 +35,6 @@ export default class TopicController {
             }
         }
         
-        console.log('telling ' + this.topics[0].id + ' topic to handle input');
         return this.topics[0].handleInput(msg);
     }
 }

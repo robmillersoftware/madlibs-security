@@ -17,6 +17,7 @@ const serverUrl = process.env.DYNO ? 'wss://young-river-54256.herokuapp.com/' : 
 
 //Array of user connections
 let users = [];
+let observers = [];
 
 //Superscript instance
 let bot;
@@ -76,8 +77,15 @@ app.get('/privacy', (req, res) => {
 
 //Websocket connection established. Create new user connection
 app.ws('/', (socket, req) => {
-  let user = new UserConnection(bot, mongo, socket, null);
-  users.push(user);
+  socket.on('message', msg => {
+    console.log(msg);            
+  });
+  
+  socket.on('close', () => {
+      console.log('Connection to user was closed');
+  });
+  
+  observers.push(socket);
 });
 
 //Options for superscript
@@ -97,23 +105,24 @@ options.scope = {
     //The user should never see this.If they do, then they are doing something malicious or something has gone horribly wrong
     let rtn = "It appears we have nothing to talk about.....good day"
 
+    observers.forEach(sock => {
+      sock.send(msg.raw);
+    });
+
     //Loop through the users looking for a matching ID
     users.forEach((sock, i) => {
       //If this socket is closed, then remove it from the array
       if (!sock.isOpen){
         users.splice(i, 1);
       } else if (id === sock.uuid) {
-        let res = sock.handleInput(msg);
-
-        if (sock.ws) {
-          sock.ws.send(msg.raw);
-          sock.ws.send(res);
-        } else {
           rtn = sock.handleInput(msg);
-        }
       }
     });
 
+    observers.forEach(sock => {
+      sock.send(rtn);
+    });
+    
     return rtn;
   }
 }
