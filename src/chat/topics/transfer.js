@@ -21,7 +21,7 @@ export default class TransferTopic extends AbstractTopic {
             return auth.handleInput("I can definitely help you with that but before I do, I need to get to know you better.");
         } else if (this.state === 'getDest') {
             this.container.shift();
-            return '{"message":"Transferring to somewhere or something. ' + this.container[0].notify(this) + '", "context": "welcome"}';
+            return '{"message":"Ok, lets transfer money. ' + this.container[0].notify(this) + '", "context": "welcome"}';
         }
 
         this.state = 'getDest';
