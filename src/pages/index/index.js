@@ -3,9 +3,9 @@
  */
 //Open a new websocket to the backend
 const ws = new WebSocket(connectionString);
-
 const pingWs = () => {
     ws.send('ping');
+    setTImeout(pingWs, 10000);
 }
 
 $(function () {
