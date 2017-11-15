@@ -10,7 +10,7 @@ export default class BalanceTopic extends AbstractTopic {
 
     notify(lastTopic) {
         this.container.shift();
-        return "Thank you for that. Your balance is $" + acctBalance + "." + this.container[0].notify(this);
+        return "Thank you for that. Your balance is $" + this.user.acctBalance + "." + this.container[0].notify(this);
     }
 
     handleInput(msg) {
@@ -21,7 +21,6 @@ export default class BalanceTopic extends AbstractTopic {
         }
 
         this.container.shift();
-        const acctBalance = accounts.content[0].balance;
-        return '{"message":"Your balance is $' + acctBalance + " " + this.container[0].notify(this) + '", "context":"welcome"}';
+        return '{"message":"Your balance is $' + this.user.acctBalance + " " + this.container[0].notify(this) + '", "context":"welcome"}';
     }
 }
