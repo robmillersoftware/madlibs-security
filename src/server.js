@@ -52,7 +52,8 @@ app.post('/dialogflow', (req, res) => {
     });
 
     if (user === null) {
-      throw new ReferenceError("Unable to find user with ID: " + userId);
+      user = new UserConnection(bot, mongo, null, userId);
+      users.push(user);
     }
   }
 
