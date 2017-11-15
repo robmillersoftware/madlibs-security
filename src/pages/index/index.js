@@ -101,7 +101,7 @@ $(function () {
         if (!localStorage.userId) {
             localStorage.setItem("userId", message.uuid);
         }
-        insertChat("pnc", message.msg);
+        insertChat(message.party, message.msg);
         $('.mytext').focus();
     };
 });

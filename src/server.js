@@ -114,10 +114,9 @@ options.scope = {
     let rtn = "It appears we have nothing to talk about.....good day"
 
     observers.forEach((sock, i) => {
-      if (sock.readyState !== sock.OPEN) {
-        observers.splice(i, 1);
+      if (sock.readyState === sock.OPEN) {
+        sock.send(JSON.stringify({msg: msg.raw, uuid: null, party: 'you'}));
       }
-      sock.send(JSON.stringify({msg: msg.raw, uuid: null}));
     });
 
     //Loop through the users looking for a matching ID
@@ -131,7 +130,9 @@ options.scope = {
     });
 
     observers.forEach(sock => {
-      sock.send(JSON.stringify({msg: JSON.parse(rtn).message, uuid: null}));
+      if (sock.readyState === sock.OPEN) {
+        sock.send(JSON.stringify({msg: JSON.parse(rtn).message, uuid: null, party: 'pnc'}));
+      }
     });
 
     return rtn;
