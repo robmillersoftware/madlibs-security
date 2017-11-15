@@ -4,7 +4,7 @@
 import ChatController from './chat-controller';
 import UserSchema from '../db/user';
 
-var uuid = require('uuid/v4');
+var uuidv4 = require('uuid/v4');
 
 export default class UserConnection {
     /**
@@ -21,14 +21,13 @@ export default class UserConnection {
         this.history = [];          //The history for this session
         this.ws = socket;           //Websocket connection if any
         this.db = db;
-        this.uuid = uuid;
+        this.uuid = uuid ? uuid : uuidv4();
         this.bot = bot;
 
         //The chat controller manages the state of the chatbot in regards to this user
         this.controller = new ChatController(this);
 
-        if (!this.uuid) {
-            this.uuid = uuid();
+        if (socket) {
             this.initializeWebSocket();
         }
     }
