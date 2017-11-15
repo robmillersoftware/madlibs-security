@@ -46,9 +46,7 @@ app.post('/dialogflow', (req, res) => {
     users.push(user);
   } else {
     users.forEach(usr => {
-      console.log('comparing user: ' + usr.uuid + ' with ' + userId);
       if (usr.uuid === userId) {
-        console.log('found user ' + userId);
         user = usr;
       }
     });
@@ -104,8 +102,10 @@ options.scope = {
       //If this socket is closed, then remove it from the array
       if (!sock.isOpen){
         users.splice(i, 1);
-      } else if (id === sock.uuid){
+      } else if (id === sock.uuid) {
+        sock.ws.send(msg.raw);
         let res = sock.handleInput(msg);
+        sock.ws.send(res);
 
         //If an array is returned from handleInput, then we need to send multiple messages
         if (Array.isArray(res)) {
