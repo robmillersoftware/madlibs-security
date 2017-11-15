@@ -7,6 +7,7 @@ export default class AuthenticateTopic extends AbstractTopic {
         this.authTarget = container[0].authTarget;
         this.currentQuestion = '';
         this.currentAnswer = '';
+        this.strikes = 0;
     }
 
     getQuestion() {
@@ -20,7 +21,9 @@ export default class AuthenticateTopic extends AbstractTopic {
     adjustTrustLevel(message) {
         if (message.raw.contains(this.currentAnswer)) {
             this.user.authLevel += 0.5;
+            this.strikes = 0;
         } else {
+            this.strikes += 1;
             this.user.authLevel -= 0.5;
         }
 
@@ -39,6 +42,10 @@ export default class AuthenticateTopic extends AbstractTopic {
             return '{"message":"' + this.container[0].notify(this) + '", "context":"welcome"}';
         }
    
-        return '{"message":"' + this.currentQuestion + '", "context": "welcome"}';
+        if(this.strikes < 3 && this.user.authLevel > -1) {
+            return '{"message":"' + this.currentQuestion + '", "context": "welcome"}';
+        } else {
+            return '{"message": "We cannot authenticate you at this time. We are connecting you with the PNC Care Center.", "context": "rejected"}'; 
+        }
     }
 }
