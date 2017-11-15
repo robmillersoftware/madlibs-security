@@ -5,10 +5,12 @@ export default class TransferTopic extends AbstractTopic {
     constructor(container,user) {
         super('transfer', container, user);
 
-        this.authTarget = 2.5;
+        this.states.push('getDest');
+        this.authTarget = 1.0;
     }
 
     notify(lastTopic) {
+        this.state = 'getDest';
         return "Thank you for that. We're ready to transfer money. Which account would you like to transfer from?";
     }
 
@@ -16,9 +18,13 @@ export default class TransferTopic extends AbstractTopic {
         if (this.user.authLevel < this.authTarget) {
             let auth = new AuthenticationTopic(this.container, this.user);
             this.container.unshift(auth);
-            return '{"message":"I can definitely help you with that but before I do, I need to get to know you better. "' + auth.getQuestion() + '", "context":"welcome"}';
+            return auth.handleInput("I can definitely help you with that but before I do, I need to get to know you better.");
+        } else if (this.state === 'getDest') {
+            this.container.shift();
+            return '{"message":"Transferring to somewhere or something", "context": "welcome"}';
         }
 
+        this.state = 'getDest';
         return '{"message":"Which account would you like to transfer from?", "context":"welcome"}';
     }
 }

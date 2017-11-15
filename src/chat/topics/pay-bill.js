@@ -5,7 +5,7 @@ export default class PayBillTopic extends AbstractTopic {
     constructor(container, user) {
         super('pay-bill', container,user);
 
-        this.authTarget = 1.5;
+        this.authTarget = 0.5;
 
         this.states.push('getPayee');
         this.states.push('paid');
@@ -22,7 +22,7 @@ export default class PayBillTopic extends AbstractTopic {
             this.container.unshift(auth);
             return auth.handleInput("I can definitely help you with that but before I do, I need to get to know you better.");
         } else if (this.state === 'getPayee') {
-            return '{"message":"Trying to pay or something: ' + msg.raw + '", "context":"welcome"}';
+            return '{"message":"Trying to pay or something.", "context":"welcome"}';
         } else {
             this.state = 'getPayee';
             return '{"message":"Which bill would you like to pay?", "context":"welcome"}';
