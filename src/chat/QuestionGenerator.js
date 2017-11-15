@@ -6,7 +6,7 @@ export default class QuestionGenerator {
 	//}
 
 	static generateQuestion() {
-		const questionNumber = QuestionGenerator.getRandomNumber(0, q.questions.length);
+		const questionNumber = Math.floor(Math.random() * q.questions.length);//QuestionGenerator.getRandomNumber(0, q.questions.length);
 		const question = q.questions[questionNumber];
 
 		q.questions.splice(questionNumber, 1);
@@ -14,7 +14,7 @@ export default class QuestionGenerator {
 		return question;
 	}
 
-	static getRandomNumber(min, max) {
+	/*static getRandomNumber(min, max) {
 	  return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
+	}*/
 }
