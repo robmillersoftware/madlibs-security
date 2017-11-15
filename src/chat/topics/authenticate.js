@@ -29,7 +29,7 @@ export default class AuthenticateTopic extends AbstractTopic {
     adjustTrustLevel(message) {
         let result = this.currentAnswer.get('' + message.raw);
         console.log(result);
-        if (result && result[0][0] > 0.5) {
+        if (result && result[0][0] > 0.3) {
             this.user.authLevel += 0.5;
             this.strikes = 0;
         } else {
@@ -44,6 +44,7 @@ export default class AuthenticateTopic extends AbstractTopic {
     }
 
     handleInput(msg) {
+        console.log('hello?');
         if (this.currentQuestion) {
             this.adjustTrustLevel(msg);
         } else {

@@ -35,6 +35,7 @@ export default class TopicController {
             }
         }
         
+        console.log('making ' + this.topics[0].id + ' handle ' + msg.raw);
         return this.topics[0].handleInput(msg);
     }
 }
