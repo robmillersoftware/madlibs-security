@@ -18,7 +18,7 @@ export default class AuthenticateTopic extends AbstractTopic {
     }
 
     adjustTrustLevel(message) {
-        if (message.raw.contains(this.answer)) {
+        if (message.raw.contains(this.currentAnswer)) {
             this.user.authLevel += 0.5;
         } else {
             this.user.authLevel -= 0.5;
@@ -30,6 +30,8 @@ export default class AuthenticateTopic extends AbstractTopic {
     handleInput(msg) {
         if (this.currentQuestion !== '') {
             this.adjustTrustLevel(msg);     
+        } else {
+            this.getQuestion();
         }
 
         if (this.user.authLevel >= this.authTarget) {
