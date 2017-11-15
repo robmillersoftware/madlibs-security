@@ -21,6 +21,6 @@ export default class AccountDetailsTopic extends AbstractTopic {
         }
 
         this.container.shift();
-        return '{"message":"Blah blah details blah", "context":"welcome"}';
+        return '{"message":"Blah blah details blah ' + this.container[0].notify(this) + '", "context":"welcome"}';
     }
 }

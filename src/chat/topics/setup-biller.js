@@ -9,7 +9,8 @@ export default class SetupBillerTopic extends AbstractTopic {
     }
 
     notify(lastTopic) {
-        return "Thank you for that. Do something?";
+        this.container.shift();
+        return "Thank you for that. Do something? " + this.container[0].notify(this);
     }
 
     handleInput(msg) {
@@ -19,6 +20,7 @@ export default class SetupBillerTopic extends AbstractTopic {
             return auth.handleInput("I can definitely help you with that but before I do, I need to get to know you better.");
         } 
             
-        return '{"message":"Do something?", "context":"welcome"}';
+        this.container.shift();
+        return '{"message":"Do something? ' + this.container[0].notify(this) + '", "context":"welcome"}';
     }
 }

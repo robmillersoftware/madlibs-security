@@ -22,7 +22,8 @@ export default class PayOthersTopic extends AbstractTopic {
             this.container.unshift(auth);
             return auth.handleInput("I can definitely help you with that but before I do, I need to get to know you better.");
         } else if (this.state === 'getPayee') {
-            return '{"message":"Trying to pay or something: ' + msg.raw + '", "context":"welcome"}';
+            this.container.shift();
+            return '{"message":"Trying to pay or something. ' + this.container[0].notify(this) + '", "context":"welcome"}';
         } else {
             this.state = 'getPayee';
             return '{"message":"Who would you like to pay?", "context":"welcome"}';
