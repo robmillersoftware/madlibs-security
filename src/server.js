@@ -38,9 +38,7 @@ app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
 app.post('/dialogflow', (req, res) => {
-  console.log('we here');
   let userId = req.body.originalRequest.source === 'google' ? req.body.originalRequest.data.user.user_id : 'undefined';
-  console.log('got da user id: ' + userId);
   let user = null;
 
   if (userId === 'undefined') {
@@ -59,9 +57,7 @@ app.post('/dialogflow', (req, res) => {
     }
   }
 
-  console.log('got da user: ' + JSON.stringify(Object.keys(user)));
   user.handleRequest(req, res);
-  console.log('request handled');
 });
 
 //R- read operations
