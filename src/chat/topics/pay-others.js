@@ -5,7 +5,7 @@ export default class PayOthersTopic extends AbstractTopic {
     constructor(container, user) {
         super('pay-other', container,user);
 
-        this.authTarget = 4.0;
+        this.authTarget = 3.0;
 
         this.states.push('getAmt');
         this.states.push('getPayee');
@@ -15,8 +15,6 @@ export default class PayOthersTopic extends AbstractTopic {
 
         this.amt = null;
         this.payee = null;
-        this.routing = null;
-        this.acct = null;
     }
 
     notify(lastTopic) {
@@ -35,16 +33,8 @@ export default class PayOthersTopic extends AbstractTopic {
             return '{"message":"Who would you like to transfer money to?", "context":"welcome"}';
         } else if (this.state === 'getPayee') {
             this.payee = msg.raw;
-            this.state = 'getRouting';
-            return '{"message":"What is the routing number on their account?", "context":"welcome"}';
-        } else if (this.state === 'getRouting') {
-            this.routing = msg.raw;
-            this.state = 'getAcct';
-            return '{"message":"What is their account number?", "context": "welcome"}';
-        } else if (this.state === 'getAcct') {
-            this.acct = msg.raw;
             this.state = 'confirm';
-            return '{"message":"Please confirm that you are sending ' + this.amt + ' to ' + this.payee + '?", "context":"welcome"}';
+            return '{"message":"Are you sure you want to send ' + this.amt + ' to ' + this.payee + '?", "context":"welcome"}';
         } else if (this.state === 'confirm') {
             if (msg.raw.contains('yes')) {
                 this.container.shift();
