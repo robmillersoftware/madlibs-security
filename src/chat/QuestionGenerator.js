@@ -1,4 +1,5 @@
 let q = require('../api/questions.json');
+let bpQuestions = require('../api/billpayquestions.json');
 
 export default class QuestionGenerator {
 	//constructor() {
@@ -12,6 +13,16 @@ export default class QuestionGenerator {
 		q.questions.splice(questionNumber, 1);
 
 		return question;
+	}
+
+	static generateBillQuestion() {
+		const bpQuestion = bpQuestions[0] || false;
+
+		if(bpQuestions.length) {
+			bpQuestions.splice(0, 1);
+		}
+
+		return bpQuestion;
 	}
 
 	/*static getRandomNumber(min, max) {
