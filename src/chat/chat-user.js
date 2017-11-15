@@ -26,7 +26,7 @@ export default class UserConnection {
         this.uuid = uuid ? uuid : uuidv4();
         this.bot = bot;
         this.acctBalance = accounts.content[0].balance;
-        
+
         //The chat controller manages the state of the chatbot in regards to this user
         this.controller = new ChatController(this);
 

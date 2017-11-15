@@ -22,6 +22,8 @@ let observers = [];
 //Superscript instance
 let bot;
 
+let convId = null;
+
 //Initialize the MongoDB wrapper
 let mongo = new MongoConnect();
 mongo.init(mongoURI);
@@ -39,8 +41,14 @@ app.set('views', path.join(__dirname, '/pages'));
 
 //C- create operations
 app.post('/dialogflow', (req, res) => {
+  let conversationId = req.body.originalRequest.source === 'google' ? req.body.originalRequest.data.conversation.conversationId : 'undefined';
   let userId = req.body.originalRequest.source === 'google' ? req.body.originalRequest.data.user.userId : 'undefined';
   let user = null;
+
+  if (conversationId !== convId) {
+    users = [];
+    convId = conversationId;
+  }
 
   if (userId === 'undefined') {
     user = new UserConnection(bot, mongo, null, uuid());
