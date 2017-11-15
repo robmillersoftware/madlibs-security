@@ -10,7 +10,7 @@ export default class BalanceTopic extends AbstractTopic {
 
     notify(lastTopic) {
         this.container.shift();
-        return "Thank you for that. Your balance is $0 you broke bastard! " + this.container[this.container.length - 1].notify(this);
+        return "Thank you for that. Your balance is $0 you broke bastard! " + this.container[0].notify(this);
     }
 
     handleInput(msg) {
@@ -21,6 +21,6 @@ export default class BalanceTopic extends AbstractTopic {
         }
 
         this.container.shift();
-        return '{"message":"Your balance is $0 you broke bastard!", "context":"welcome"}';
+        return '{"message":"Your balance is $0 you broke bastard! ' + this.container[0].notify(this) + '", "context":"welcome"}';
     }
 }

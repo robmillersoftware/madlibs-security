@@ -36,14 +36,9 @@ export default class UserConnection {
         let obj = this;
 
         obj.ws.on('message', msg => {
-            console.log("we shouldn't be here");
             let message = JSON.parse(msg);
 
-            //If there is an id attached to the message from the user, then check for an existing user profile in the DB and load the data
-            if (message.id !== "undefined" && message.id !== id) {
-                id = message.id;
-                obj.buildUser(id);
-            }
+            obj.buildUser(id);
 
             //Connected is the first message sent by the user and doesn't merit a response
             if (message.string !== 'connected') {
@@ -103,6 +98,7 @@ export default class UserConnection {
             };
 
             res.send(JSON.stringify(response));
+            obj.update();
         });
     }
 
