@@ -18,7 +18,9 @@ export default class AuthenticateTopic extends AbstractTopic {
     }
 
     adjustTrustLevel(message) {
-        if (message.raw.includes(this.currentAnswer)) {
+        console.log('message raw is ' + message.raw);
+
+        if (this.currentAnswer.includes(message.raw.includes)) {
             this.user.authLevel += 0.5;
         } else {
             this.user.authLevel -= 0.5;
