@@ -1,6 +1,5 @@
 {
-  "content": [
-    {
+  "content": [{
       "transactionId": 171315,
       "account": {
         "accountId": 303,
@@ -78,7 +77,8 @@
         "transactionTypeId": 1,
         "accountType": "ATM",
         "active": "Y",
-        "description": "Deposit or withdraw funds using an ATM."
+        "description": "Deposit or withdraw funds using an ATM.",
+        "detail": "ZIPCAR PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 3351,
@@ -179,7 +179,8 @@
         "transactionTypeId": 4,
         "accountType": "DEPOSIT",
         "active": "Y",
-        "description": "Add funds to an account by any method."
+        "description": "Add funds to an account by any method.",
+        "detail": "RITE AID PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5912,
@@ -280,7 +281,8 @@
         "transactionTypeId": 5,
         "accountType": "WITHDRAWAL",
         "active": "Y",
-        "description": "Deduct funds from an account by any method."
+        "description": "Deduct funds from an account by any method.",
+        "detail": "MACY’ S MONROEVILLE PA"
       },
       "mccCode": {
         "mccCode": 5651,
@@ -381,7 +383,8 @@
         "transactionTypeId": 1,
         "accountType": "ATM",
         "active": "Y",
-        "description": "Deposit or withdraw funds using an ATM."
+        "description": "Deposit or withdraw funds using an ATM.",
+        "detail": "CHIPOTLE PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5814,
@@ -482,7 +485,8 @@
         "transactionTypeId": 4,
         "accountType": "DEPOSIT",
         "active": "Y",
-        "description": "Add funds to an account by any method."
+        "description": "Add funds to an account by any method.",
+        "detail": "WHOLE FOODS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5411,
@@ -583,7 +587,8 @@
         "transactionTypeId": 1,
         "accountType": "ATM",
         "active": "Y",
-        "description": "Deposit or withdraw funds using an ATM."
+        "description": "Deposit or withdraw funds using an ATM.",
+        "detail": "WENDY’S PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5814,
@@ -684,7 +689,8 @@
         "transactionTypeId": 1,
         "accountType": "ATM",
         "active": "Y",
-        "description": "Deposit or withdraw funds using an ATM."
+        "description": "Deposit or withdraw funds using an ATM.",
+        "detail": "WHOLE FOODS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5411,
@@ -785,7 +791,8 @@
         "transactionTypeId": 1,
         "accountType": "ATM",
         "active": "Y",
-        "description": "Deposit or withdraw funds using an ATM."
+        "description": "Deposit or withdraw funds using an ATM.",
+        "detail": "HERTZ PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 3351,
@@ -886,15 +893,16 @@
         "transactionTypeId": 4,
         "accountType": "DEPOSIT",
         "active": "Y",
-        "description": "Add funds to an account by any method."
+        "description": "Add funds to an account by any method.",
+        "detail": "Home Depot PITTSBURGH PA"
       },
       "mccCode": {
-        "mccCode": 9999,
-        "editedDescription": "Other",
-        "combinedDescription": "Other",
-        "usdaDescription": "Other",
-        "irsDescription": "Other",
-        "irsReportable": "Other"
+        "mccCode": 5251,
+        "editedDescription": "Hardware Stores",
+        "combinedDescription": "Hardware Stores",
+        "usdaDescription": "Hardware Stores",
+        "irsDescription": "Home Improvement",
+        "irsReportable": "Yes"
       },
       "comments": "DEPOSIT",
       "currency": {
@@ -987,7 +995,8 @@
         "transactionTypeId": 4,
         "accountType": "DEPOSIT",
         "active": "Y",
-        "description": "Add funds to an account by any method."
+        "description": "Add funds to an account by any method.",
+        "detail": "WHOLE FOODS PITTSBURGH PA"
       },
       "mccCode": {
         "mccCode": 5411,
