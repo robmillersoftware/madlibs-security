@@ -18,7 +18,7 @@ export default class AuthenticateTopic extends AbstractTopic {
     }
 
     adjustTrustLevel(message) {
-        let result = FuzzySet.get(message.raw);
+        let result = this.currentAnswer.get(message.raw);
         console.log(result);
         if (result[0] > 0.5) {
             this.user.authLevel += 0.5;
