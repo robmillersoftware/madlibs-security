@@ -8,7 +8,7 @@
     "parse": "node build/parse.js",
     "watch": "node build/watch.js",
     "build": "node build/build.js",
-    "prestart": "npm run clean -s && npm run -s build -- -ss -js -ejs -css -assets",
+    "prestart": "npm run clean -s && npm run -s build -- -json -ss -js -ejs -css -assets",
     "start": "parallelshell 'npm run watch' 'nodemon -q --watch dist dist/server.js'"
   },
   "repository": {

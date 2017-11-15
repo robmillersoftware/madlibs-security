@@ -6,7 +6,7 @@ let commandsToRun = [];
 console.log('-Running builds');
 
 const displayUsage = () => {
-    console.log('Usage: node build.js -js|-ejs|-css|-ss|-assets');
+    console.log('Usage: node build.js -js|-json|-ejs|-css|-ss|-assets');
     process.exit();
 }
 
@@ -50,6 +50,13 @@ const runSs = () => {
 const runAssets = () => {
     console.log('--Copying assets');
     exec(`cd ${process.env.PWD}/src; cp -rf --parents assets/* ../dist`, (err, stdout, stderr) => {
+        if (err) throw err;
+    });
+}
+
+const runJson = () => {
+    console.log('--Copying json');
+    exec(`cd ${process.env.PWD}/src; cp -rf --parents api/*.json ../dist`, (err, stdout, stderr) => {
         if (err) throw err;
     });
 }
