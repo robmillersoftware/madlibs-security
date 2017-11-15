@@ -1,6 +1,8 @@
 import AbstractTopic from './abstract-topic';
 import QuestionGenerator from '../QuestionGenerator';
 
+let FuzzySet = require('fuzzyset.js')();
+
 export default class AuthenticateTopic extends AbstractTopic {
     constructor(container, user) {
         super('authenticate', container, user);
@@ -13,10 +15,12 @@ export default class AuthenticateTopic extends AbstractTopic {
         let qa = QuestionGenerator.generateQuestion();
         this.currentQuestion = qa.question;
         this.currentAnswer = qa.answer;
+        FuzzySet.add(this.currentAnswer);
     }
 
     adjustTrustLevel(message) {
-        if (this.currentAnswer.includes(message.raw.includes)) {
+        let result = FuzzySet.get(message.raw);
+        if (result[0] > 0.5) {
             this.user.authLevel += 0.5;
         } else {
             this.user.authLevel -= 0.5;
@@ -29,7 +33,7 @@ export default class AuthenticateTopic extends AbstractTopic {
         if (this.currentQuestion) {
             this.adjustTrustLevel(msg);
         } else {
-            this.getQuestion();            
+            this.getQuestion();
             return '{"message": "' + msg + ' ' + this.currentQuestion + '", "context": "welcome"}';
         }
 
