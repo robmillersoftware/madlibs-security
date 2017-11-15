@@ -1,6 +1,6 @@
 const args = process.argv.slice(2);
 const exec = require('child_process').execSync;
-const validCommands = ['-js','-ejs','-css','-ss','-assets'];
+const validCommands = ['-json', '-js','-ejs','-css','-ss','-assets'];
 let commandsToRun = [];
 
 console.log('-Running builds');
@@ -77,6 +77,9 @@ commandsToRun.forEach(cmd => {
             break;
         case '-assets':
             runAssets();
+            break;
+        case '-json':
+            runJson();
             break;
     }
 });

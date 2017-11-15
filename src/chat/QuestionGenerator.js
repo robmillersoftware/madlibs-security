@@ -1,6 +1,4 @@
-const questions = require('../api/questions.json');
-
-let qArray = JSON.parse(questions);
+let questions = require('../api/questions.json');
 
 export default class QuestionGenerator {
 	//constructor() {
@@ -8,11 +6,11 @@ export default class QuestionGenerator {
 	//}
 
 	static generateQuestion() {
-		const questionNumber = QuestionGenerator.getRandomNumber(0, qArray.length);
+		const questionNumber = QuestionGenerator.getRandomNumber(0, questions.length);
 
-		const question = qArray[questionNumber];
+		const question = questions[questionNumber];
 
-		qArray.splice(questionNumber, 1);
+		questions.splice(questionNumber, 1);
 
 		return question;
 	}
