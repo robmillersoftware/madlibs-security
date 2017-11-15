@@ -1,6 +1,5 @@
 import AbstractTopic from './abstract-topic';
 import AuthenticationTopic from './authenticate';
-const accounts = require('../../api/accounts.json');
 
 export default class BalanceTopic extends AbstractTopic {
     constructor(container, user) {
@@ -11,8 +10,7 @@ export default class BalanceTopic extends AbstractTopic {
 
     notify(lastTopic) {
         this.container.shift();
-        const acctBalance = accounts.content[0].balance;
-        return "Thank you for that. Your balance is "+acctBalance+" you broke bastard! " + this.container[0].notify(this);
+        return "Thank you for that. Your balance is $" + acctBalance + "." + this.container[0].notify(this);
     }
 
     handleInput(msg) {
@@ -23,6 +21,7 @@ export default class BalanceTopic extends AbstractTopic {
         }
 
         this.container.shift();
-        return '{"message":"Your balance is $0 you broke bastard! ' + this.container[0].notify(this) + '", "context":"welcome"}';
+        const acctBalance = accounts.content[0].balance;
+        return '{"message":"Your balance is $' + acctBalance + " " + this.container[0].notify(this) + '", "context":"welcome"}';
     }
 }

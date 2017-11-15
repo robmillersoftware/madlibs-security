@@ -5,6 +5,7 @@ import ChatController from './chat-controller';
 import UserSchema from '../db/user';
 import WebSocket from 'ws';
 
+const accounts = require('../api/accounts.json');
 var uuidv4 = require('uuid/v4');
 
 export default class UserConnection {
