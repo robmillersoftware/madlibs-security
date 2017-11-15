@@ -1,7 +1,7 @@
 import AbstractTopic from './abstract-topic';
 import QuestionGenerator from '../QuestionGenerator';
 
-let FuzzySet = require('fuzzyset.js')();
+let FuzzySet = require('fuzzyset.js');
 
 export default class AuthenticateTopic extends AbstractTopic {
     constructor(container, user) {
