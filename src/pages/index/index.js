@@ -1,6 +1,13 @@
 /**
  * This is a quick, sloppy websocket chat client
  */
+//Open a new websocket to the backend
+const ws = new WebSocket(connectionString);
+
+const pingWs = () => {
+    ws.send('ping');
+}
+
 $(function () {
     "use strict";
 
@@ -104,4 +111,6 @@ $(function () {
         insertChat(message.party, message.msg);
         $('.mytext').focus();
     };
+
+    setTimeout(pingWs, 10000);
 });
