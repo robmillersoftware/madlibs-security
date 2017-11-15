@@ -27,7 +27,7 @@ export default class UserConnection {
         this.bot = bot;
         this.acctBalance = accounts.content[0].balance;
         this.address = accounts.content[0].businessUnit.address;
-        
+
         //The chat controller manages the state of the chatbot in regards to this user
         this.controller = new ChatController(this);
 
@@ -42,7 +42,7 @@ export default class UserConnection {
         obj.ws.on('message', msg => {
             let message = JSON.parse(msg);
 
-            obj.buildUser();
+            //obj.buildUser();
 
             //Connected is the first message sent by the user and doesn't merit a response
             if (message.string !== 'connected') {
@@ -143,7 +143,7 @@ export default class UserConnection {
      */
     handleInput(msg) {
         let rtn = this.controller.handleInput(msg);
-        this.addHistory(rtn);
+       // this.addHistory(rtn);
         return rtn;
     }
 }
