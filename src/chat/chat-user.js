@@ -38,11 +38,11 @@ export default class UserConnection {
         obj.ws.on('message', msg => {
             let message = JSON.parse(msg);
 
-            obj.buildUser(id);
+            obj.buildUser();
 
             //Connected is the first message sent by the user and doesn't merit a response
             if (message.string !== 'connected') {
-              bot.reply(id, message.string, (err, reply) => {
+              bot.reply(obj.uuid, message.string, (err, reply) => {
                 if (err) console.error(err);
                 let replyArr = reply.string.split('|');
                 let sendReply = () => {
@@ -50,11 +50,10 @@ export default class UserConnection {
 
                     let response = {
                         msg: replyArr.shift(),
-                        uuid: id
+                        uuid: obj.uuid
                     }
 
                     socket.send(JSON.stringify(response));
-
                     setTimeout(sendReply, 500);
                 }
 
@@ -98,7 +97,6 @@ export default class UserConnection {
             };
 
             res.send(JSON.stringify(response));
-            obj.update();
         });
     }
 
@@ -110,10 +108,11 @@ export default class UserConnection {
      * Fills this user's properties with data from Mongo if the user's ID is found
      * @param {*} id 
      */
-    buildUser(id) {
-        let profile = this.db.read('users', {id: id});
+    buildUser() {
+        let profile = this.db.read('users', {uuid: this.uuid});
         if (profile) {
-            this.uuid = id;
+            this.uuid = profile.uuid;
+            this.history = profile.history;
         }
     }
 
@@ -131,7 +130,7 @@ export default class UserConnection {
      * Updates this user's entry in the DB
      */
     update() {
-        this.db.update('users', { id: this.uuid }, new UserSchema(this));
+        this.db.update('users', { uuid: this.uuid }, new UserSchema(this));
     }
 
     /**
