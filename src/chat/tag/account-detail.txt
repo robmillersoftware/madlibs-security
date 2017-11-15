@@ -1,6 +1,6 @@
-account
-check_cleared
-recent_transactions
 <what_accounts_do_I_have>
+list_my_accounts
+list_accounts
 <what_is_my_account_number>
 <what_is_my_account_address>
+address

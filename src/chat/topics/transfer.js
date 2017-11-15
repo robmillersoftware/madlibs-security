@@ -5,12 +5,12 @@ export default class TransferTopic extends AbstractTopic {
     constructor(container,user) {
         super('transfer', container, user);
 
-        this.states.push('getDest');
-        this.authTarget = 1.0;
+        this.states.push('getSrc');
+        this.authTarget = 2.0;
     }
 
     notify(lastTopic) {
-        this.state = 'getDest';
+        this.state = 'getSrc';
         return "Thank you for that. We're ready to transfer money. Which account would you like to transfer from?";
     }
 

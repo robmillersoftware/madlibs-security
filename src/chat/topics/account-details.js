@@ -1,16 +1,18 @@
 import AbstractTopic from './abstract-topic';
 import AuthenticationTopic from './authenticate';
 
+let FuzzySet = require('fuzzyset.js');
+
 export default class AccountDetailsTopic extends AbstractTopic {
     constructor(container, user) {
-        super('balance', container, user);
+        super('account-details', container, user);
 
         this.authTarget = 0.5;
     }
 
     notify(lastTopic) {
         this.container.shift();
-        return "Thank you for that. Blah blah details blah " + this.container[this.container.length - 1].notify(this);
+        return "Thank you for that. Your address on file is " + this.user.address + ". " + this.container[this.container.length - 1].notify(this);
     }
 
     handleInput(msg) {
@@ -21,6 +23,6 @@ export default class AccountDetailsTopic extends AbstractTopic {
         }
 
         this.container.shift();
-        return '{"message":"Blah blah details blah ' + this.container[0].notify(this) + '", "context":"welcome"}';
+        return '{"message":"Your address on file is ' + this.user.address + '. ' + this.container[0].notify(this) + '", "context":"welcome"}';
     }
 }
