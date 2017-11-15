@@ -53,6 +53,7 @@ app.post('/dialogflow', (req, res) => {
   }
 
   console.log('still going');
+  console.log(Object.keys(req));
   if (userId === 'undefined') {
     user = new UserConnection(bot, mongo, null, uuid());
     users.push(user);
