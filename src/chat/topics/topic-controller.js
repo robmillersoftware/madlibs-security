@@ -27,7 +27,7 @@ export default class TopicController {
             } else if (msg.tags.includes('pay-bill')) {
                 this.topics.unshift(new PayBillTopic(this.topics, this.user));
             } else if (msg.tags.includes('pay-others')) {
-                this.topics.unshift(new PayOtherTopic(this.topics, this.user));
+                this.topics.unshift(new PayOthersTopic(this.topics, this.user));
             } else if (msg.tags.includes('setup-biller')) {
                 this.topics.unshift(new SetupBillerTopic(this.topics, this.user));
             } else if (msg.tags.includes('transfer')) {
