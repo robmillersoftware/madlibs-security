@@ -5,8 +5,8 @@ export default class AuthenticateTopic extends AbstractTopic {
     constructor(container, user) {
         super('authenticate', container, user);
         this.authTarget = container[0].authTarget;
-        this.currentQuestion = '';
-        this.currentAnswer = '';
+        this.currentQuestion = null;
+        this.currentAnswer = null;
     }
 
     getQuestion() {
@@ -26,7 +26,7 @@ export default class AuthenticateTopic extends AbstractTopic {
     }
 
     handleInput(msg) {
-        if (this.currentQuestion !== '') {
+        if (this.currentQuestion) {
             this.adjustTrustLevel(msg);
         } else {
             this.getQuestion();            
