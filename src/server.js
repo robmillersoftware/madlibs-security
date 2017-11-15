@@ -106,8 +106,7 @@ options.scope = {
     let rtn = "It appears we have nothing to talk about.....good day"
 
     observers.forEach(sock => {
-      console.log(msg.raw);
-      sock.send(msg.raw);
+      sock.send(JSON.stringify({msg: msg.raw, uuid: null}));
     });
 
     //Loop through the users looking for a matching ID
@@ -121,7 +120,7 @@ options.scope = {
     });
 
     observers.forEach(sock => {
-      sock.send(rtn);
+      sock.send(JSON.stringify({msg: rtn, uuid: null}));
     });
 
     return rtn;
