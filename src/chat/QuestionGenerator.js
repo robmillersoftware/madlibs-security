@@ -1,21 +1,23 @@
 const questions = require('../api/questions.json');
 
+let qArray = JSON.parse(questions);
+
 export default class QuestionGenerator {
-	constructor() {
-		this.questions = JSON.parse(questions);
-	}
+	//constructor() {
+		//this.questions = JSON.parse(questions);
+	//}
 
-	generateQuestion() {
-		const questionNumber = this.getRandomNumber(0, this.questions.length);
+	static generateQuestion() {
+		const questionNumber = QuestionGenerator.getRandomNumber(0, qArray.length);
 
-		const question = this.questions[questionNumber];
+		const question = qArray[questionNumber];
 
-		this.questions.splice(questionNumber, 1);
+		qArray.splice(questionNumber, 1);
 
 		return question;
 	}
 
-	getRandomNumber(min, max) {
+	static getRandomNumber(min, max) {
 	  return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 }
