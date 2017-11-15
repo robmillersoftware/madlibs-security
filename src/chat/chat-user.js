@@ -99,7 +99,7 @@ export default class UserConnection {
                 speech: replyObj.message,
                 displayText: replyObj.message,
                 data: {},
-                contextOut: context,
+                contextOut: [{name: "welcome-followup"}, {name: "welcome"}],
                 source: '',
                 followupEvent: {}
             };
